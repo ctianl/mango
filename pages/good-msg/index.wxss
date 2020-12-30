@@ -1,0 +1,282 @@
+.container {
+    padding: 0;
+    height: 100vh;
+}
+
+.headPic,
+swiper,
+swiper-item,
+.headPic image {
+    width: 100vw;
+    height: 700rpx;
+    /* position: absolute; */
+    object-fit: cover;
+    overflow: hidden;
+    margin: 0;
+    /* top: 0; */
+}
+
+.grey {
+    color: gray;
+}
+
+.good_msg {
+    width: 100vw;
+    height: 210rpx;
+    box-sizing: border-box;
+    padding: 20rpx 10rpx 20rpx 10rpx;
+}
+
+.price_icon {
+    font-size: 25rpx;
+    color: #FA1E8B;
+    margin-top: 10rpx;
+    margin-bottom: 10rpx;
+}
+
+.price {
+    font-size: 35rpx;
+    color: #FA1E8B
+}
+
+.sale {
+    font-size: 25rpx;
+    margin-bottom: 10rpx;
+}
+
+.space {
+    width: 100vw;
+    height: 25rpx;
+    background: #f2f3f5
+}
+
+.share {
+    text-align: center;
+    transform: translateY(20rpx)
+}
+
+.share image {
+    width: 40rpx;
+    height: 40rpx
+}
+
+/* .share view{
+    
+} */
+.headPic {
+    position: relative;
+}
+
+.page_tip {
+    background: rgba(0, 0, 0, 0.5);
+    width: 70rpx;
+    color: lightgray;
+    border-radius: 25rpx;
+    text-align: center;
+    position: absolute;
+    bottom: 20rpx;
+    right: 20rpx;
+    font-size: 25rpx;
+    z-index: 9;
+}
+
+.pop_container {
+    height: 100%;
+    width: 100vw;
+    box-sizing: border-box;
+    position: relative;
+    border: 0;
+}
+
+.close_btn {
+    width: 35rpx;
+    height: 35rpx;
+    position: absolute;
+    top: 30rpx;
+    right: 20rpx;
+}
+
+.number_pic {
+    width: 200rpx;
+    height: 200rpx;
+    border: 5rpx solid white;
+    box-shadow: 0 0 10rpx lightgrey;
+    position: fixed;
+    top: 30rpx;
+    left: 30rpx;
+}
+
+.number_pic image {
+    width: 100%;
+    height: 100%
+}
+
+.price_msg {
+    position: absolute;
+    top: 60rpx;
+    left: 260rpx;
+}
+
+.buy_number {
+    position: absolute;
+    bottom: 110rpx;
+    left: 30rpx;
+}
+
+.type {
+    position: absolute;
+    top: 260rpx;
+    left: 30rpx;
+    width: 90%;
+    font-size: 25rpx;
+    box-sizing: border-box;
+    margin-bottom: 10rpx;
+}
+
+.type_item_choose {
+    background-color: #FA1E8B;
+    color: white;
+    border-radius: 10rpx;
+    margin-bottom: 10rpx;
+    width: fit-content;
+    padding: 10rpx 20rpx 10rpx 20rpx;
+}
+
+.type_item {
+    background-color: white;
+    color: grey;
+    border-radius: 10rpx;
+    margin-bottom: 10rpx;
+    width: fit-content;
+    padding: 10rpx 20rpx 10rpx 20rpx;
+    border: 1rpx solid lightgrey;
+}
+
+.number_btns {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    padding: 0;
+    height: 90rpx;
+    line-height: 90rpx;
+
+}
+
+.pop_icon {
+    display: inline-block;
+    width: 50vw !important;
+    color: white;
+    border-radius: 0;
+    margin: 0;
+    border: none;
+    height: 100%;
+    text-align: center;
+}
+
+.enter_cart {
+    background: linear-gradient(to right, #FED682, #FCB202);
+}
+
+.quick_buy {
+    background: linear-gradient(to right, #FC70AA, #FA1E79);
+}
+
+.bottom {
+    width: 100vw;
+    height: 90rpx;
+    position: fixed;
+    bottom: 0;
+    background: white;
+    box-shadow: 0 -5rpx 10rpx #eee;
+    cursor: pointer;
+}
+
+.btn {
+    border-radius: 0;
+    height: 90rpx;
+    color: white;
+    text-align: center !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.bar_icon {
+    height: 90rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: grey;
+}
+
+.first_bar_icon {
+    border-right: 1rpx solid #eee;
+}
+
+.intro_imgs {
+    margin-bottom: 0rpx
+}
+
+.intro_imgs image {
+    width: 100vw
+}
+
+.popStyle {
+    height: 480rpx;
+    box-shadow: 0 -5rpx 10rpx #eee;
+
+}
+
+.popStyle2 {
+    height: 640rpx;
+    box-shadow: 0 -5rpx 10rpx #eee;
+
+
+}
+
+.sharePic {
+    width: 80vw;
+    height: 70vh;
+    text-align: center;
+    border-radius: 15rpx;
+    position: relative;
+    padding: 30rpx;
+}
+
+.sharePicBox {
+    width: 100%;
+    margin: auto;
+    box-shadow: 0 0rpx 5rpx grey;
+    overflow: hidden;
+    padding: 5rpx;
+    height: 500rpx;
+    margin-top: 60rpx;
+}
+
+.sharePicBox image {
+    width: 100%;
+    height: 100%;
+}
+
+.savePicBtn {
+    position: absolute;
+    bottom: 50rpx;
+    width: 100%;
+    box-sizing: border-box;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+}
+
+.closeShareBtn {
+    position: absolute;
+    right: 10rpx;
+    top: 10rpx;
+}
+/* 去掉按钮默认边框 */
+.bar_icon button::after{
+    border: 0;
+}

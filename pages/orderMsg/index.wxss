@@ -1,0 +1,110 @@
+/* pages/orderMsg/index.wxss */
+page {
+    background-color: rgba(238, 238, 238, 0.527);
+}
+
+.container {
+    padding: 0;
+    height: fit-content;
+    border: 1px solid ;
+    position: relative;
+    /* background-color: rgba(238, 238, 238, 0.527); */
+}
+
+.status_box {
+    background: #FF8358;
+    height: 135rpx;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding-left: 30rpx;
+
+}
+
+.box {
+    margin-top: 20rpx;
+    background: white;
+    /* padding: 30rpx */
+}
+
+.img_box {
+    width: 150rpx;
+    height: 180rpx;
+    overflow: hidden;
+    border-radius: 10rpx;
+    flex: 1
+}
+
+.img_box image {
+    width: 100%;
+    height: 100%;
+}
+
+.good_name {
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.grey {
+    color: grey;
+}
+
+.pink {
+    color: #FF4F63;
+}
+
+.cell_class {
+    height: 60rpx !important;
+    display: flex;
+    align-items: center;
+}
+
+.monny-title {
+    color: gray;
+}
+
+.contact_person {
+    text-indent: 1.5em
+}
+
+.address {
+    text-indent: 1.5em;
+    color: grey
+}
+
+.location-icon {
+    position: absolute !important;
+    top: 25rpx !important
+}
+
+.good {
+    display: flex;
+    justify-content: space-between;
+    color: grey;
+    font-size: 25rpx;
+    padding: 10rpx 30rpx 10rpx 30rpx;
+}
+
+.money_box{
+    margin-bottom: 100rpx;
+
+}
+.bottom_pay{
+    /* position: absolute;
+    bottom: 0; */
+    height: 70rpx;
+    position: absolute;
+    bottom: 0;
+    border: 1px solid red;
+    width: 100vw;
+    display: flex;
+}
+.bottom_btn{
+    width: 50vw;
+    
+}

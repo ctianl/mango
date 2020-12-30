@@ -1,0 +1,79 @@
+<!--pages/orderMsg/index.wxml-->
+<view class="container">
+	<view class="status_box">
+		<!-- 订单状态 -->
+		<view>{{status==1?'待付款':status==2?'待发货':status==3?'待收货':status==4?'待评价':''}}</view>
+	</view>
+
+	<view>
+		<!-- 收货地址信息 -->
+		<van-cell-group>
+			<van-cell bindtap="toAddress" center border="{{ false }}">
+				<view slot="title" style="position:relative">
+					<view class="van-cell-text">
+						<van-icon custom-class='location-icon' name="location-o" size="30rpx" />
+					</view>
+					<view class="van-cell-text contact_person">{{address_name}} {{address_phone}}</view>
+					<view class="van-cell-text address" style="">{{address_area}} {{address_detail}}</view>
+				</view>
+			</van-cell>
+		</van-cell-group>
+	</view>
+
+	<view class="box">
+		<!-- 商品信息 -->
+		<van-cell title="商品列表" />
+		<view class="good">
+			<text>订单号：{{order_sn}}</text>
+			<text>{{time}}</text>
+		</view>
+		<!-- 可能不止一个商品啊 -->
+		<view wx:for="{{good_list}}">
+			<van-cell>
+				<!-- 标题 插槽 -->
+				<view slot="title" style="display:flex;width:80vw;height:180rpx">
+					<view class="img_box">
+						<image src="{{item.img}}"></image>
+					</view>
+					<view style="height:150rpx;flex:2;padding-left:10rpx">
+						<view class="good_name">{{item.name}}</view>
+						<view class="grey">×{{item.number}}</view>
+					</view>
+				</view>
+				<!-- 内容 插槽 -->
+				<view>
+					<text class="pink">￥{{item.price}}</text>
+				</view>
+			</van-cell>
+
+		</view>
+		<van-cell title="">
+			<text>共 {{sumNumber}} 件商品，合计：<text class="pink">￥{{all_sumPrice}}</text></text>
+		</van-cell>
+
+	</view>
+
+	<view class="box money_box">
+		<!-- 订单金额 -->
+		<van-cell title="订单金额" />
+		<van-cell border="{{false}}" custom-class='cell_class'>
+			<view slot="title" class="monny-title">商品金额:</view>
+			<text class="pink">￥{{all_sumPrice}}</text>
+		</van-cell>
+		<van-cell border="{{false}}" custom-class='cell_class'>
+			<view slot="title" class="monny-title">配送费用:</view>
+			<text class="pink">+￥{{delivery_pay}}</text>
+		</van-cell>
+		<van-cell border="{{false}}" custom-class='cell_class'>
+			<view slot="title" class="monny-title">实付金额:</view>
+			<text class="pink">￥{{actually_pay}}</text>
+		</van-cell>
+
+	</view>
+
+	<!-- 如果没有付款 -->
+	<view wx:if="{{status==1}}" class="bottom_pay">
+		<view class="bottom_btn">取消订单</view>
+		<view class="bottom_btn">去付款</view>
+	</view>
+</view>

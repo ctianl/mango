@@ -1,0 +1,28 @@
+/* pages/address/index.wxss */
+page{
+    background-color: rgba(238, 238, 238, 0.44);
+}
+.container {
+    padding: 0;
+    height: 100%;
+}
+.edit,.del{
+    display: inline-block;
+    margin-left: 20rpx;
+}
+.group{
+    margin-bottom:20rpx;
+}
+.icon{
+    transform: translateY(5rpx);
+}
+.btn{
+   position: fixed;bottom: 0;
+   width: 100vw;
+}
+.title{
+    font-size: 30rpx;
+}
+.radio_list{
+    padding-bottom: 200rpx;
+}

@@ -1,0 +1,71 @@
+/* pages/my/index.wxss */
+.container {
+    padding: 0;
+    height: 100vh;
+    background-color: rgba(238, 238, 238, 0.527);
+}
+
+.head {
+    height: 300rpx;
+    width: 100vw;
+    background-color: #FFDD00;
+}
+.head_img_box{
+    border: 4rpx solid white;
+    border-radius: 50%;
+    width: 120rpx;
+    height: 120rpx;
+    overflow: hidden;
+    margin-right: 20rpx;
+    background-color: white;
+}
+.head_msg{
+    transform: translate(70rpx,40rpx);
+    display: flex;
+    align-items: center;
+}
+.head_img{
+    width: 100%;
+    height: 100%;
+}
+.order{
+    background-color: white;
+    height: 220rpx;
+    width: 95vw;
+    margin:auto;
+    transform: translateY(-95rpx);
+    box-shadow: 0 0 5rpx lightgrey;
+    border-radius: 5rpx;
+    margin-bottom: 20rpx;
+}
+
+.item{
+    text-align: center;
+    font-size: 28rpx;
+    color: gray;
+    margin-top: 25rpx;
+}
+.wallet{
+    background-color: white;
+    transform: translateY(-95rpx);
+    height: 150rpx;
+
+}
+.wallet_item{
+    text-align: center;
+    font-size: 28rpx;
+    margin-top: 35rpx;
+
+}
+.wallet_item_last{
+    border-left: 1px solid #eee;
+}
+.red_text{
+    color: tomato;
+    /* font-weight: bold; */
+    font-size: 38rpx;
+}
+.list{
+    transform: translateY(-75rpx);
+
+}

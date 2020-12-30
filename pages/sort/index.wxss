@@ -1,0 +1,22 @@
+.container {
+    padding: 0;
+    height: 100vh;
+}
+.sort{
+    width: 90vw;
+    margin: auto;
+    margin-top: 20rpx;
+}
+.sort_item{
+    width: 30vw;
+    overflow: hidden;
+    display: inline-block;
+    margin-bottom: 35rpx;
+    text-align: center;
+    font-size: 25rpx;
+}
+.img{
+    width: 90%;
+    height: 200rpx;
+    margin: auto;
+}

@@ -1,0 +1,145 @@
+<view class="container">
+	<view class="headPic">
+		<view class="page_tip">
+			<text style="color:white;font-size:30rpx">{{currentIndex}}</text>/{{sum}}
+		</view>
+		<swiper indicator-dots="true" autoplay="{{autoplay}}" interval="{{interval}}" indicator-color="lightgrey" indicator-active-color="white" bindchange="swiperChange">
+			<swiper-item wx:for="{{head_imgs}}">
+
+				<image src="{{item}}" class="slide-image" mode="aspectFill" />
+			</swiper-item>
+		</swiper>
+	</view>
+
+	<!-- 商品信息 -->
+	<view class="good_msg">
+		<!-- 布局 -->
+
+		<van-row>
+			<van-col span="21">
+				<view>{{name}}</view>
+				<view class="price_icon">￥
+					<text class="price">{{price}}</text>
+				</view>
+				<view class="grey sale">销量：{{sale}}</view>
+			</van-col>
+			<van-col span="3">
+				<view class="share" bindtap="share">
+					<image src="/images/share.png"></image>
+					<view class="grey">分享</view>
+				</view>
+
+			</van-col>
+
+		</van-row>
+	</view>
+
+	<!-- 灰 -->
+	<view class="space"></view>
+
+	<!-- 选择 -->
+	<van-cell title="选择" is-link bindtap="chooseNumber" />
+
+	<view class="space"></view>
+
+	<!-- 商品详情 -->
+	<van-cell title="商品描述" />
+	<view wx:for="{{intro_imgs}}" class="intro_imgs">
+		<image src="{{item}}" mode="widthFix"></image>
+
+	</view>
+
+
+
+	<view class="space"></view>
+
+	<view class="bottom">
+		<!-- 布局 -->
+		<van-row>
+			<van-col span="4">
+				<view class="bar_icon first_bar_icon">
+					<button open-type="contact" style="height:90rpx;padding-top:15rpx;color:grey;background:none;border:none;box-shadow:none">
+						<van-icon name="service-o" size="30px" />
+					</button>
+				</view>
+			</van-col>
+			<van-col span="4">
+				<view class="bar_icon">
+					<button bindtap="cart" style="height:90rpx;padding-top:15rpx;color:grey;background:none;border:0">
+						<van-icon name="shopping-cart-o" size="30px" info="{{info==0?'':info}}" />
+					</button>
+
+				</view>
+			</van-col>
+			<van-col span="8">
+				<view class="btn enter_cart" bindtap="chooseNumber">
+					<text>加入购物车</text>
+				</view>
+			</van-col>
+			<van-col span="8">
+				<view class="btn quick_buy" bindtap="chooseNumber">
+					<text>立即购买</text>
+				</view>
+			</van-col>
+		</van-row>
+
+	</view>
+
+	<!-- 商品数量 弹出 -->
+
+	<van-popup show="{{ popShow }}" closeable="false" position="bottom" class="pop" custom-class="{{isChooseType==true?'popStyle2':'popStyle'}}">
+		<view class="pop_container">
+			<!-- closeBtn -->
+
+			<image src="/images/close.png" class="close_btn" bindtap="onClose"></image>
+			<!-- 商品图片 -->
+			<view class="number_pic">
+				<image src="{{head_imgs[0]}}"></image>
+			</view>
+			<view class="price_msg">
+				<view class="price_icon">￥ <text  class="price">{{price}}</text></view>
+				<view class="grey sale">库存：{{stock}}</view>
+			</view>
+			<!-- 是否有选择 -->
+			<view wx:if="{{isChooseType}}" class="type">
+				<view class="grey sale">预订套餐</view>
+				<view wx:for="{{types}}">
+					<view data-id="{{item.id}}" data-name="{{item.name}}" bindtap="chooseType" class="{{item.isChoose==true?'type_item_choose':'type_item'}}">{{item.name}}</view>
+				</view>
+			</view>
+			<!-- 购买数量 -->
+			<view class="buy_number">
+				<view class="grey sale">购买数量</view>
+				<van-stepper value="{{step}}" bind:change="stepChange" />
+			</view>
+
+			<view class="number_btns">
+				<view class="enter_cart pop_icon" bindtap="enter_cart">加入购物车</view>
+
+				<view class="quick_buy pop_icon" bindtap="quick_buy">立即购买</view>
+			</view>
+		</view>
+	</van-popup>
+
+
+	<!-- 分享 -->
+	<van-action-sheet show="{{ share_show }}" actions="{{ actions }}" bind:select="onSelectShare" />
+
+	<!-- 商品海报 图片 弹出 -->
+	<van-popup custom-class="sharePic" round show="{{ sharePicShow }}">
+		<!-- 一个关闭按钮 -->
+		<view class="closeShareBtn" bindtap="closeShare">
+			<van-icon name="close" size="30px" color="grey" />
+		</view>
+
+		<!-- 其实应该获取后端生成的返回的图片 -->
+		<view class="sharePicBox">
+			<image src="{{head_imgs[0]}}"></image>
+
+		</view>
+		<view class="savePicBtn">
+			<van-button bind:click="savePic" type="primary" block color="#FC70AA" data-url="{{head_imgs[0]}}">保存图片</van-button>
+		</view>
+	</van-popup>
+
+</view>

@@ -1,0 +1,21 @@
+<view class="container">
+	<van-cell-group>
+		<van-field label="收货人" model:value="{{name }}" placeholder="请输入收货人姓名" border="{{ true }}" bind:change="onChange" />
+		<van-field maxlength='11' label="手机号" model:value="{{phone }}" placeholder="请输入收货人联系电话" border="{{true }}" bind:change="onChange" />
+	</van-cell-group>
+
+	<van-cell-group custom-class="second_cell">
+		<van-field 
+        bindtap="showArea" 
+        disabled label="所在地区" model:value="{{ area }}" placeholder="选择省、市、区" border="{{ true }}" bind:change="onChange" />
+		<van-field label="详细地址" model:value="{{ address }}" placeholder="请输入街道小区楼层" border="{{true }}" bind:change="onChange" />
+	</van-cell-group>
+
+	<button class="btn" id="get">一键获取微信地址</button>
+	<button class="btn" id="save" bindtap="save">保存</button>
+
+	<view  wx:if="{{showArea}}" class="area" >
+		<van-area  bind:confirm="confirm" bind:cancel="cancel" area-list="{{ areaList }}" />
+	</view>
+
+</view>

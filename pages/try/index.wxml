@@ -1,0 +1,3 @@
+<view class="new_commodity_l_main" bindtap="jumpNewShopping" style="margin-top:25rpx" wx:for="{{another}}">
+<image src="{{item.mainPicsUrl[0]}}" style="width:100rpx;height:100rpx" class="new_commodity_item"></image>
+</view>

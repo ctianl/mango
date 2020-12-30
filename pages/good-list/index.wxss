@@ -1,0 +1,125 @@
+/* pages/good-list/index.wxss */
+.container {
+    padding: 0;
+    height: 100vh;
+    background-color: #eee;
+}
+/* .empty{
+    background-color: white;
+} */
+.good {
+    height: 550rpx;
+    overflow: hidden;
+    margin-bottom: 8rpx;
+    background-color: white;
+
+}
+.search_text{
+    color: gray;
+    transform: translateX(-12rpx);
+    display: inline-block;
+ 
+}
+.show_type {
+    width: 40rpx;
+    height: 40rpx;
+    transform: translateY(10rpx);
+}
+
+.active {
+    color: #FA1E8B
+}
+
+.sortItem {
+    display: flex;
+    align-items: center;
+    width: 33vw;
+    justify-content: center;
+}
+
+.img {
+    width: 50vw;
+    height: 400rpx;
+}
+
+.sortIcon {
+    width: 20rpx;
+    height: 20rpx;
+    margin-left: 10rpx;
+}
+
+.content {
+    background: #eee
+}
+
+.price {
+    color: #FA1E8B;
+}
+
+.bottom_msg {
+    height: 80rpx;
+    text-align: center;
+    color: grey;
+    line-height: 90rpx;
+    background-color: #eee;
+}
+
+.goodMsg {
+    padding: 10rpx;
+    padding-bottom: 0;
+}
+
+.sort {
+    width: 100vw;
+    height: 70rpx;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #eee;
+    align-items: center;
+    font-size: 28rpx;
+}
+
+.card_img_box {
+    height: 220rpx;
+}
+
+.card_img {
+    width: 90%;
+    height: 220rpx;
+
+}
+
+.card {
+    height: 255rpx;
+    padding: 15rpx;
+    background-color: white;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.289);
+}
+
+.goodMsgTitle,.card_title{
+    height: 90rpx;
+    /* 超出使用省略号 */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.intro {
+    color: #FA1E8B;
+    font-size: 25rpx;
+}
+
+.discount {
+    text-decoration: line-through;
+    color: gray;
+    font-size: 25rpx;
+
+}
+
+.saled {
+    font-size: 25rpx;
+    color: gray;
+
+}

@@ -1,0 +1,66 @@
+<!--index.wxml-->
+<view class="container">
+	<!-- 头部图片 -->
+	<!-- 弄一个swiper -->
+	<view class="headPic">
+		<swiper indicator-dots="true" autoplay="{{autoplay}}" interval="{{interval}}" indicator-color="lightgrey" indicator-active-color="white">
+				<swiper-item wx:for="{{ad_img}}">
+					<image src="{{item}}" class="slide-image" mode="scaleToFill"/>
+				</swiper-item>
+		</swiper>
+	</view>
+	<!-- 粉丝群 -->
+	<!-- 显示/不显示 -->
+	<view wx:if="{{isShowBenefit}}" class="fans">
+		<!-- 可以用布局 -->
+		<van-row>
+			<van-col span="4">
+				<image src="/images/gift.png" class="gift_icon"></image>
+			</van-col>
+			<van-col span="15">
+				<view>
+					<view class="group">官方粉丝福利群</view>
+					<view>活动咨询、更多优惠咨询</view>
+				</view>
+			</van-col>
+			<van-col span="4">
+				<button class="click_to_enter" bindtap="enterFansGroup">点击进入</button>
+			</van-col>
+		</van-row>
+
+	</view>
+	<view class="sort">
+		<!-- 分类 -->
+		<!-- 布局 -->
+		<van-row>
+			<van-col span="6" wx:for="{{sort_list}}">
+				<!-- 点击具体项 进入页面 -->
+				<view class="sort_item" data-id="{{item.id}}" bindtap="enterSortItemPage">
+					<image class="s_item_img" src="{{item.img}}"></image>
+					<view>{{item.name}}</view>
+				</view>
+			</van-col>
+		</van-row>
+	</view>
+
+	<!-- 所有信息 -->
+	<view class="box" wx:for="{{all_msg}}" wx:for-item="type">
+		<view class="heading">
+			<text>{{type.name}}</text>
+		</view>
+		<van-row>
+			<view class="content" wx:for="{{type.list}}">
+				<!-- 布局 -->
+				<van-col span="12">
+					<view class="content-item" bindtap="toGoodMsg" data-id="{{item.id}}">
+						<image class="content-item-img" src="{{item.img}}" mode="aspectFill"></image>
+						<view class="content-item-text">{{item.title}}
+							<text class="content-item-price">￥{{item.price}}</text>
+						</view>
+					</view>
+				</van-col>
+			</view>
+		</van-row>
+
+	</view>
+</view>

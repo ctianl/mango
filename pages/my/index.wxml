@@ -1,0 +1,97 @@
+<!--pages/my/index.wxml-->
+<view class='container'>
+	<view class="head">
+		<!-- 判断是否登录 -->
+		<view wx:if="{{isLogin}}">
+			<!-- 已经登录 -->
+			<view class="head_msg">
+				<!-- 头像 -->
+				<view class="head_img_box">
+					<image class="head_img" src="{{head_img}}"></image>
+				</view>
+				<!-- 昵称 -->
+				<view class="head_name_box">
+					{{username}}
+				</view>
+			</view>
+		</view>
+		<view wx:else>
+			<!-- 未登录 -->
+			<view class="head_msg">
+				<!-- 头像 -->
+				<view class="head_img_box">
+					<image class="head_img" src="{{notoken_head_img}}"></image>
+				</view>
+				<!-- 昵称 -->
+				<view class="head_name_box">
+					<van-button bindgetuserinfo="bindGetUserInfo" open-type="getUserInfo" plain type="primary" color="#FF495E" size="small">请登录</van-button>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 我的订单 -->
+	<view class="order">
+		<van-cell title="我的订单" is-link link-type="navigateTo" url="/pages/order/index" value="全部订单" />
+		<van-row>
+			<van-col span="6">
+				<view class="item">
+					<van-icon name="description" size="45rpx" />
+					<view>全部订单</view>
+				</view>
+			</van-col>
+			<van-col span="6">
+				<view class="item">
+					<van-icon name="paid" size="45rpx" />
+					<view>待付款</view>
+				</view>
+			</van-col>
+			<van-col span="6">
+				<view class="item">
+					<van-icon name="logistics" size="45rpx" />
+					<view>待收货</view>
+				</view>
+			</van-col>
+			<van-col span="6">
+				<view class="item">
+					<van-icon name="after-sale" size="45rpx" />
+					<view>退款/售后</view>
+				</view>
+			</van-col>
+		</van-row>
+	</view>
+
+	<!-- 钱包 -->
+	<view class="wallet">
+		<van-row>
+			<van-col span="8">
+				<view class="wallet_item">
+					<view class="red_text">{{remain_data}}</view>
+					<view>账户余额</view>
+				</view>
+			</van-col>
+			<van-col span="8">
+				<view class="wallet_item">
+					<view class="red_text">{{coupon_data}}</view>
+					<view>优惠券</view>
+				</view>
+			</van-col>
+			<van-col span="8">
+				<view class="wallet_item wallet_item_last">
+					<van-icon name="paid" size="45rpx" />
+					<view>我的钱包</view>
+				</view>
+			</van-col>
+		</van-row>
+	</view>
+
+	<!-- 列表 -->
+	<view class="list">
+		<van-cell title="收货地址" icon="location-o" link-type="navigateTo" url="/pages/address/index" is-link />
+		<van-cell title="领券中心" icon="point-gift-o" link-type="navigateTo" url="/pages/address/index" is-link />
+		<van-cell title="拼团订单" icon="goods-collect-o" link-type="navigateTo" url="/pages/address/index" is-link />
+		<van-cell title="我的优惠券" icon="balance-pay" link-type="navigateTo" url="/pages/address/index" is-link />
+		<van-cell title="我的帮助" icon="question-o" link-type="navigateTo" url="/pages/help/index" is-link />
+	</view>
+
+</view>

@@ -1,0 +1,4 @@
+<!--pages/help/index.wxml-->
+<view class="container">
+	<van-cell title="关于小程序" value="" size="large" label="小程序本身无需下载，无需注册，不占用手机内存，可以跨平台使用，响应迅速，体验接近原生APP" />
+</view>

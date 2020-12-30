@@ -1,0 +1,4 @@
+<view class="container" >
+<!-- 一个二维码 -->
+<image src="{{img}}" mode="widthFix"></image>
+</view>

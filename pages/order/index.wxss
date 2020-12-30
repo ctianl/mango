@@ -1,0 +1,149 @@
+/* pages/order/index.wxss */
+page{
+    background-color: rgba(238, 238, 238, 0.527);
+
+}
+
+.container {
+    padding: 0;
+    height: fit-content;
+    /* background-color: rgba(238, 238, 238, 0.527); */
+}
+
+.tab-class {
+    color: red;
+
+}
+
+.list-item {
+    background-color: white;
+    margin-top: 20rpx;
+}
+
+.top {
+    height: 100rpx;
+    padding: 10rpx;
+    border-bottom: 1px solid #eee;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+}
+
+/* 垂直居中 */
+.middle {
+    height: 200rpx;
+    overflow: hidden;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+
+}
+
+.bottom {
+    height: 80rpx;
+    color: gray;
+    line-height: 80rpx;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+.img_wrap{
+    width: 400rpx;
+    height: 180rpx;
+}
+.img_box {
+    width: 180rpx;
+    height: 180rpx;
+    float: left;
+    margin-right: 20rpx;
+}
+
+.good_img {
+    width: 100%;
+    height: 100%;
+}
+.good_name{
+    width: 80vw;
+    overflow: hidden;/*超出部分隐藏*/
+    white-space: nowrap;/*不换行*/
+    text-overflow:ellipsis;/*超出部分文字以...显示*/
+}
+.top view,
+.middle,
+.bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pink {
+    color: rgba(255, 0, 0, 0.74);
+}
+
+.order_msg {
+    color: gray;
+    font-size: 25rpx;
+    margin-top: 10rpx;
+}
+
+.name {
+    margin-top: 8rpx;
+    margin-bottom: 5rpx;
+}
+
+/* 一个箭头 */
+.sum::after {
+    content: '';
+    display: inline-block;
+    border-right: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+
+    width: 20rpx;
+    height: 20rpx;
+    transform: rotate(45deg);
+
+}
+
+.sum {
+    font-size: 30rpx;
+}
+
+.small_btn {
+    margin-left: 15rpx;
+    border-radius: 10rpx !important;
+    font-size: 30rpx !important;
+    width: fit-content;
+    height: 60rpx;
+    transform: translateY(13.5rpx);
+    line-height: 60rpx;
+    border: 1px solid #eee;
+    background-color: white;
+    color: gray;
+    display: inline-block;
+}
+
+.small_btn::after {
+    border: none;
+}
+
+.red {
+    border: 1px solid red;
+    color: red;
+}
+
+
+.popUpStyle{
+    width: 80vw;
+    height: fit-content;
+    border-radius: 10rpx;
+}
+.payMethodBox{
+    display:flex;align-items:center;line-height:100%
+}
+.payMethod{
+    margin-left: 10rpx;
+}

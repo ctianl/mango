@@ -1,0 +1,91 @@
+<!--pages/good-list/index.wxml-->
+<view class="container">
+	<!-- 使用双向绑定 -->
+	<van-search model:value="{{keyword}}" use-action-slot shape="round" input-align="center" placeholder="搜索关键词">
+		<view slot="action">
+			<!-- 搜索键 -->
+			<text bindtap="search" class="search_text">搜索</text>
+			<image  catchtap="changeSortType" wx:if="{{show_type}}" class="show_type" src="/images/sortType2.png"></image>
+			<image  catchtap="changeSortType" wx:else class="show_type" src="/images/sortType1.png"></image>
+		</view>
+	</van-search>
+	<view class="sort">
+		<view bindtap="clickSort" data-id="综合" class="'sortItem' {{active=='综合'?'active':''}}">综合</view>
+		<view bindtap="clickSort" data-id="销量" class="'sortItem' {{active=='销量'?'active':''}}">销量</view>
+
+		<view bindtap="clickSort" data-id="价格" class="'sortItem' {{active=='价格'?'active':''}}">
+			<!-- 排序的图片 -->
+			价格
+			<image wx:if="{{sort==0}}" src="/images/sort_noclick.png" class="sortIcon"></image>
+			<image wx:elif="{{sort==1}}" class="sortIcon" src="/images/toTop.png"></image>
+			<image wx:elif="{{sort==2}}" class="sortIcon" src="/images/toBottom.png"></image>
+		</view>
+	</view>
+	<!-- 用布局 -->
+
+	<view class="content" wx:if="{{show_type}}">
+		<!-- 应该判断list的长度 -->
+		<view wx:if="{{list.length==0}}">
+			<van-empty class="custom-image" image="/images/nogood.png" description="亲，没有相关内容" />
+		</view>
+		<view wx:else>
+			<van-row gutter="4">
+				<van-col span="12" wx:for="{{list}}">
+					<view bindtap="toGoodMsg" class="good" data-id="{{item.id}}">
+						<image class="img" src="{{item.img}}"></image>
+						<view class="goodMsg">
+							<view class="goodMsgTitle">{{item.title}}</view>
+							<view class="price">￥{{item.price}}
+								<text class="discount" wx:if="{{item.discount!=''}}">￥{{item.discount}}</text>
+							</view>
+						</view>
+
+					</view>
+				</van-col>
+			</van-row>
+
+			<!-- 底部 -->
+			<view class="bottom_msg">亲，没有更多了</view>
+		</view>
+
+	</view>
+	<view class="content" wx:else>
+		<view wx:if="{{list.length==0}}" class="empty">
+			<van-empty class="custom-image" image="/images/nogood.png" description="亲，没有相关内容" />
+		</view>
+		<view wx:else>
+
+			<!-- 另一种排序方式 -->
+			<view wx:for="{{list}}">
+				<!-- <van-card  price="{{item.price}}" desc="{{item.intro}}" title="{{item.title}}" thumb="{{item.img}}" /> -->
+				<view class="card" bindtap="toGoodMsg"  data-id="{{item.id}}">
+					<!-- 使用布局 -->
+					<van-row>
+						<van-col span="8">
+							<view class="card_img_box">
+								<image src="{{item.img}}" class="card_img"></image>
+							</view>
+						</van-col>
+						<van-col span="16">
+							<view class="card_title">{{item.title}}</view>
+							<view class="intro">{{item.intro}}</view>
+							<view class='saled'>已售{{item.sale}}件</view>
+							<view class="price">
+								￥{{item.price}}
+								<text class="discount" wx:if="{{item.discount!=''}}">￥{{item.discount}}</text>
+							</view>
+						</van-col>
+					</van-row>
+
+
+				</view>
+			</view>
+
+			<!-- 底部 -->
+			<view class="bottom_msg">亲，没有更多了</view>
+		</view>
+
+	</view>
+
+
+</view>

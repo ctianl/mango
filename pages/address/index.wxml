@@ -1,0 +1,47 @@
+<!--pages/address/index.wxml-->
+<view class="container">
+	<view wx:if="{{hasAddress}}" style="margin-bottom:100rpx">
+		<van-radio-group value="{{ radio }}" bind:change="onChange">
+			<van-cell-group custom-class="group" wx:for="{{list}}">
+				<van-cell clickable data-name="2" bind:click="onClick">
+					<view slot="title">
+						<view class="van-cell-text title">
+							{{item.name}} {{item.phone}}
+						</view>
+						<view class="van-cell-text">
+							{{item.area}} {{item.address}}
+						</view>
+					</view>
+
+				</van-cell>
+				<van-cell>
+					<view slot="title">
+						<view class="van-cell-text">
+							<van-radio slot="right-icon" name="{{item.id}}">选择</van-radio>
+						</view>
+
+					</view>
+					<view>
+						<!-- 编辑 删除 -->
+						<view data-id="{{item.id}}" class="edit" bindtap="edit">
+							<van-icon custom-class="icon" name="edit" />编辑
+						</view>
+						<view data-id="{{item.id}}" class="del" bindtap="del">
+							<van-icon custom-class="icon" name="delete" />删除
+						</view>
+					</view>
+				</van-cell>
+
+
+			</van-cell-group>
+		</van-radio-group>
+	</view>
+	<view wx:else>
+			<van-empty image="/images/cry.png" description="亲，您还没有收货列表" />
+
+	</view>
+
+	<view class="btn" bindtap="add">
+		<van-button color="#FA1E8B" type="primary" block>添加新地址</van-button>
+	</view>
+</view>

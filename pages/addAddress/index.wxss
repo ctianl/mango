@@ -1,0 +1,31 @@
+.container {
+    padding: 0;
+    height: 100vh;
+    background-color: rgba(238, 238, 238, 0.433);
+}
+.btn{
+    display: block;
+    border-radius: 20rpx;
+}
+#get{
+    width: 95%;
+    background-color: rgba(0, 128, 0, 0.727);
+    color: white;
+    border-radius: 10rpx;
+    font-size:30rpx;
+    margin-top: 40rpx;
+}
+#save{
+    width: 95%;
+    background-color: #FA1E8B;
+    color: white;
+    border-radius: 10rpx;
+    font-size:30rpx;
+    margin-top: 20rpx;
+}
+.second_cell{
+    margin-top: 20rpx;
+}
+.area{
+    position:fixed;bottom:0;width:100vw
+}

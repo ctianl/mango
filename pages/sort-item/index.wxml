@@ -1,0 +1,61 @@
+<view class="container">
+	<!-- 分类名称 -->
+	<view class="name">
+		{{name}}
+	</view>
+	<!-- 循环列表 -->
+	<!-- 判断 -->
+
+	<!-- 住宿 -->
+	<view wx:if="{{id==1}}">
+		<view wx:for="{{list}}" class="wrap" wx:key="img">
+			<image src="{{item.img}}" class="hotel-img"></image>
+			<view class="item">
+				<text>{{item.name}}</text>
+				<text class="price">￥{{item.price}}</text>
+			</view>
+		</view>
+	</view>
+
+	<!-- 会议室 -->
+	<view wx:elif="{{id==2}}">
+		<view wx:for="{{list}}" class="wrap" wx:key="img">
+			<image src="{{item.img}}" class="hotel-img meeting-img"></image>
+			<view class="item">
+				<view class="meeting-text">{{item.name}}
+					<text>{{item.introduce?item.introduce:''}}</text>
+				</view>
+				<text class="price golden">￥{{item.price}}</text>
+			</view>
+		</view>
+	</view>
+	<!-- 餐厅 -->
+	<view wx:elif="{{id==3}}">
+		<van-row>
+			<view class="content" wx:for="{{list}}">
+				<!-- 布局 -->
+				<van-col span="12">
+					<view class="content-item">
+						<image class="content-item-img" src="{{item.img}}" mode="aspectFill"></image>
+						<view class="content-item-text">{{item.name}}
+							<text class="content-item-price">￥{{item.price}}</text>
+						</view>
+					</view>
+				</van-col>
+			</view>
+		</van-row>
+	</view>
+
+    <!-- 高端专区 -->
+	<view wx:if="{{id==4}}">
+		<view wx:for="{{list}}" class="wrap" wx:key="img">
+			<image src="{{item.img}}" class="hotel-img meeting-img" mode="aspectFill"></image>
+			<view class="item">
+				<view class="meeting-text">{{item.name}}
+					<text>{{item.introduce?item.introduce:''}}</text>
+				</view>
+				<text class="price golden">￥{{item.price}}</text>
+			</view>
+		</view>
+	</view>
+</view>

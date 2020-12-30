@@ -1,0 +1,10 @@
+<view class="container">
+	<van-search bindtap="search" disabled shape="round" input-align="center" placeholder="搜索商品" />
+
+    <view class="sort">
+        <view bindtap="clickSortItem" wx:for="{{list}}" class="sort_item" data-id="{{item.id}}">
+            <image class="img" src="{{item.img}}"></image>
+            <view>{{item.name}}</view>
+        </view>
+    </view>
+</view>

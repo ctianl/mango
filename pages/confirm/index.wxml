@@ -1,0 +1,215 @@
+<view class="container">
+	<van-tabs active="{{ active }}" bind:change="tabChange" color='#FA1E8B'>
+		<van-tab title="快速配送" title-style="{{active==0?'color:#FA1E8B':'color:grey'}}">
+			<view class="address">
+				<!-- 判断是否有地址信息 -->
+				<view wx:if="{{hasAddress}}">
+					<van-cell-group>
+						<van-cell bindtap="toAddress" center is-link border="{{ false }}">
+							<view slot="title" style="position:relative">
+								<view class="van-cell-text">
+									<van-icon name="location-o" size="30rpx" style="position:absolute;top:25rpx" />
+								</view>
+								<view class="van-cell-text" style="text-indent:1.5em">{{addressMsg.name}} {{addressMsg.phone}}</view>
+								<view class="van-cell-text" style="text-indent:1.5em;color:grey">{{addressMsg.area}} {{addressMsg.address}}</view>
+							</view>
+						</van-cell>
+					</van-cell-group>
+				</view>
+				<view wx:else>
+					<van-cell bindtap="chooseAddress" title="请选择配送地址" icon="location-o" is-link />
+				</view>
+			</view>
+
+			<!-- 灰色分割 -->
+			<view class="grey_line"></view>
+
+			<!-- 商品信息 -->
+			<van-row custom-class="good_msg">
+				<van-col span="8">
+					<view class="img_box">
+						<image src="{{img}}" class="img"></image>
+					</view>
+				</van-col>
+				<van-col span="16">
+					<view class="detail">
+						<view class="name">{{name}}</view>
+						<view class="num_price">
+							<text class="grey">x{{number}}</text> <text class="pink">￥{{price}}</text>
+						</view>
+					</view>
+
+				</van-col>
+			</van-row>
+			<view class="sum_msg grey">共{{number}}件商品，合计：<text class="pink">￥{{ number*price}}</text>
+			</view>
+
+			<view class="grey_line"></view>
+
+			<van-cell-group>
+				<van-cell title="订单总金额：">
+					<text class="pink">￥{{number*price}}</text>
+				</van-cell>
+				<van-cell title="优惠券：">
+					<text class="grey">{{coupon_msg}}</text>
+				</van-cell>
+				<van-cell title="配送费用：" value="{{hasAddress==true?'+￥'+postage:'请先选择配送地址'}}" value-class="{{hasAddress==true?'pink':'grey'}}" />
+				<!-- {{hasAddress==true?'pink':'grey'}} -->
+			</van-cell-group>
+
+			<view class="grey_line"></view>
+
+			<van-radio-group value="{{ radio }}" bind:change="onChange">
+				<van-cell-group>
+					<van-cell title="支付方式" />
+					<van-cell clickable data-name="1" value-class="checkbox" bind:click="onClick">
+						<view slot="title">
+
+							<view class="van-cell-text">
+								<image class="pay_icon" src="/images/wechat.png"></image>
+								微信支付
+							</view>
+							<!-- <van-tag type="danger">标签</van-tag> -->
+						</view>
+						<van-radio use-icon-slot value="{{ radio }}" name="1">
+							<image class="check_icon" slot="icon" src="{{ radio === '1' ? icon.active : icon.normal }}" />
+						</van-radio>
+					</van-cell>
+
+					<van-cell value-class="checkbox" clickable data-name="2" bind:click="onClick">
+						<view slot="title">
+							<view class="van-cell-text">
+								<image class="pay_icon" src="/images/money.png"></image>
+								余额支付
+							</view>
+							<!-- <van-tag type="danger">标签</van-tag> -->
+						</view>
+						<van-radio use-icon-slot value="{{ radio }}" name="2">
+							<image class="check_icon" slot="icon" src="{{ radio === '2' ? icon.active : icon.normal }}" />
+						</van-radio>
+					</van-cell>
+				</van-cell-group>
+			</van-radio-group>
+
+			<view class="grey_line"></view>
+
+			<!-- 买家留言 -->
+			<van-cell-group>
+				<van-field autosize maxlength='50' value="{{leaveMsg}}" placeholder="选填：买家留言（50字以内）" border="{{ false }}" bind:change="onLeaveMsgChange" />
+			</van-cell-group>
+
+			<view class="grey_line"></view>
+
+			<!-- 留块 -->
+			<view style="height:100rpx"> </view>
+
+		</van-tab>
+		<van-tab title="上门自提" title-style="{{active==0?'color:grey':'color:#FA1E8B'}}">
+						<view class="address">
+				<!-- 判断是否有地址信息 -->
+				<view wx:if="{{hasAddress}}">
+					<van-cell-group>
+						<van-cell bindtap="toAddress" center is-link border="{{ false }}">
+							<view slot="title" style="position:relative">
+								<view class="van-cell-text">
+									<van-icon name="location-o" size="30rpx" style="position:absolute;top:25rpx" />
+								</view>
+								<view class="van-cell-text" style="text-indent:1.5em">{{addressMsg.name}} {{addressMsg.phone}}</view>
+								<view class="van-cell-text" style="text-indent:1.5em;color:grey">{{addressMsg.area}} {{addressMsg.address}}</view>
+							</view>
+						</van-cell>
+					</van-cell-group>
+				</view>
+				<view wx:else>
+					<van-cell bindtap="chooseAddress" title="请选择自提点" icon="location-o" is-link />
+				</view>
+			</view>
+
+
+
+			<!-- 灰色分割 -->
+			<view class="grey_line"></view>
+
+			<!-- 商品信息 -->
+			<van-row custom-class="good_msg">
+				<van-col span="8">
+					<view class="img_box">
+						<image src="{{img}}" class="img"></image>
+					</view>
+				</van-col>
+				<van-col span="16">
+					<view class="detail">
+						<view class="name">{{name}}</view>
+						<view class="num_price">
+							<text class="grey">x{{number}}</text> <text class="pink">￥{{price}}</text>
+						</view>
+					</view>
+
+				</van-col>
+			</van-row>
+			<view class="sum_msg grey">共{{number}}件商品，合计：<text class="pink">￥{{ number*price}}</text>
+			</view>
+
+			<view class="grey_line"></view>
+
+			<van-cell-group>
+				<van-cell title="订单总金额：">
+					<text class="pink">￥{{number*price}}</text>
+				</van-cell>
+				<van-cell title="优惠券：">
+					<text class="grey">{{coupon_msg}}</text>
+				</van-cell>
+
+			</van-cell-group>
+
+			<view class="grey_line"></view>
+
+			<van-radio-group value="{{ radio }}" bind:change="onChange">
+				<van-cell-group>
+					<van-cell title="支付方式" />
+					<van-cell clickable data-name="1" value-class="checkbox" bind:click="onClick">
+						<view slot="title">
+
+							<view class="van-cell-text">
+								<image class="pay_icon" src="/images/wechat.png"></image>
+								微信支付
+							</view>
+							<!-- <van-tag type="danger">标签</van-tag> -->
+						</view>
+						<van-radio use-icon-slot value="{{ radio }}" name="1">
+							<image class="check_icon" slot="icon" src="{{ radio === '1' ? icon.active : icon.normal }}" />
+						</van-radio>
+					</van-cell>
+
+					<van-cell value-class="checkbox" clickable data-name="2" bind:click="onClick">
+						<view slot="title">
+							<view class="van-cell-text">
+								<image class="pay_icon" src="/images/money.png"></image>
+								余额支付
+							</view>
+							<!-- <van-tag type="danger">标签</van-tag> -->
+						</view>
+						<van-radio use-icon-slot value="{{ radio }}" name="2">
+							<image class="check_icon" slot="icon" src="{{ radio === '2' ? icon.active : icon.normal }}" />
+						</van-radio>
+					</van-cell>
+				</van-cell-group>
+			</van-radio-group>
+
+			<view class="grey_line"></view>
+
+			<!-- 买家留言 -->
+			<van-cell-group>
+				<van-field autosize maxlength='50' value="{{leaveMsg}}" placeholder="选填：买家留言（50字以内）" border="{{ false }}" bind:change="onLeaveMsgChange" />
+			</van-cell-group>
+
+			<view class="grey_line"></view>
+
+			<!-- 留块 -->
+			<view style="height:100rpx"> </view>
+		</van-tab>
+
+	</van-tabs>
+
+	<van-submit-bar price="{{ 3050 }}" button-text="提交订单" bind:submit="onSubmit" />
+</view>
