@@ -6,12 +6,10 @@
 
 	<van-cell-group custom-class="second_cell">
 		<van-field 
-        bindtap="showArea" 
-        disabled label="所在地区" model:value="{{ area }}" placeholder="选择省、市、区" border="{{ true }}" bind:change="onChange" />
-		<van-field label="详细地址" model:value="{{ address }}" placeholder="请输入街道小区楼层" border="{{true }}" bind:change="onChange" />
+        label="收货地址" model:value="{{ address }}" placeholder="请输入收货地址" border="{{ true }}" bind:change="onChange" />
 	</van-cell-group>
 
-	<button class="btn" id="get">一键获取微信地址</button>
+	<button class="btn" id="get" bindtap="get">搜索地址</button>
 	<button class="btn" id="save" bindtap="save">保存</button>
 
 	<view  wx:if="{{showArea}}" class="area" >

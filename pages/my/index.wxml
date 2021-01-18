@@ -32,30 +32,30 @@
 
 	<!-- 我的订单 -->
 	<view class="order">
-		<van-cell title="我的订单" is-link link-type="navigateTo" url="/pages/order/index" value="全部订单" />
+		<van-cell title="我的订单" data-id="0" bind:click='toOrderList' value="全部订单" is-link />
 		<van-row>
 			<van-col span="6">
-				<view class="item">
+				<view class="item" data-id="0" bindtap="toOrderList">
 					<van-icon name="description" size="45rpx" />
 					<view>全部订单</view>
 				</view>
 			</van-col>
 			<van-col span="6">
-				<view class="item">
-					<van-icon name="paid" size="45rpx" />
+				<view class="item" data-id="1" bindtap="toOrderList">
+					<van-icon name="paid" size="45rpx" info="{{wait_pay_number==0?'':wait_pay_number}}" />
 					<view>待付款</view>
 				</view>
 			</van-col>
 			<van-col span="6">
-				<view class="item">
-					<van-icon name="logistics" size="45rpx" />
+				<view class="item" data-id="3" bindtap="toOrderList">
+					<van-icon name="logistics" size="45rpx" info="{{wait_get_number==0?'':wait_get_number}}" />
 					<view>待收货</view>
 				</view>
 			</van-col>
 			<van-col span="6">
-				<view class="item">
-					<van-icon name="after-sale" size="45rpx" />
-					<view>退款/售后</view>
+				<view class="item" data-id="6" bindtap="toOrderList">
+					<van-icon name="after-sale" size="45rpx" info="{{refund_number==0?'':refund_number}}" />
+					<view>退款</view>
 				</view>
 			</van-col>
 		</van-row>
@@ -65,19 +65,19 @@
 	<view class="wallet">
 		<van-row>
 			<van-col span="8">
-				<view class="wallet_item">
+				<view class="wallet_item" bindtap="toWallet">
 					<view class="red_text">{{remain_data}}</view>
 					<view>账户余额</view>
 				</view>
 			</van-col>
 			<van-col span="8">
-				<view class="wallet_item">
+				<view class="wallet_item" bindtap="toMyCoupons">
 					<view class="red_text">{{coupon_data}}</view>
 					<view>优惠券</view>
 				</view>
 			</van-col>
 			<van-col span="8">
-				<view class="wallet_item wallet_item_last">
+				<view class="wallet_item wallet_item_last" bindtap="toWallet">
 					<van-icon name="paid" size="45rpx" />
 					<view>我的钱包</view>
 				</view>
@@ -87,11 +87,16 @@
 
 	<!-- 列表 -->
 	<view class="list">
-		<van-cell title="收货地址" icon="location-o" link-type="navigateTo" url="/pages/address/index" is-link />
-		<van-cell title="领券中心" icon="point-gift-o" link-type="navigateTo" url="/pages/address/index" is-link />
-		<van-cell title="拼团订单" icon="goods-collect-o" link-type="navigateTo" url="/pages/address/index" is-link />
-		<van-cell title="我的优惠券" icon="balance-pay" link-type="navigateTo" url="/pages/address/index" is-link />
-		<van-cell title="我的帮助" icon="question-o" link-type="navigateTo" url="/pages/help/index" is-link />
+		<van-cell title="收货地址" icon="location-o" data-page='/pages/address/index' bind:click='changePage' is-link />
+		<van-cell title="领券中心" icon="point-gift-o" data-page="/pages/getCouponsCenter/index" bind:click='changePage' is-link />
+		<van-cell title="拼团订单" icon="goods-collect-o" data-page="/pages/groupOrder/index" bind:click='changePage' is-link />
+		<van-cell title="我的优惠券" icon="balance-pay" data-page="/pages/myCoupons/index" bind:click='changePage' is-link />
+		<van-cell title="我的帮助" icon="question-o" data-page="/pages/help/index" bind:click='changePage' is-link />
 	</view>
 
+
+	<!-- 一个弹窗,提醒用户进行登录 -->
+	<van-dialog use-slot title="操作提示" confirmButtonText='登录' show="{{ showLogin }}" show-cancel-button confirm-button-open-type="getUserInfo" bind:cancel="onClose" bind:getuserinfo="bindGetUserInfo">
+		<view class='loginContent'>尚未登录,是否登录使用小程序?</view>
+	</van-dialog>
 </view>

@@ -1,0 +1,46 @@
+<!--pages/group/index.wxml-->
+<view class="container">
+	<!-- 使用template模板 -->
+	<template name='temp'>
+		<view wx:if="{{list.length>0}}">
+			<view wx:for="{{list}}" class="box" data-id='{{item.good_id}}' bindtap="toGoodMsg">
+				<!-- 使用布局 -->
+				<van-row>
+					<van-col span="9">
+						<image src="{{item.img}}" class="img"></image>
+					</van-col>
+					<van-col span="15">
+						<view>
+							<view class="name">{{item.good_name}}</view>
+							<view class='intro red'>{{item.intro}}</view>
+							<view class="size">
+								<van-icon custom-class='icon' name="friends" color="#F03C3C" size="25rpx" /><text class="red">{{item.size}}人团 </text>
+								<text class="grey">已有{{item.now_people}}人进行拼团</text>
+							</view>
+							<view class='money'>
+								<text>
+                        <text class="red">￥{{item.now_price}}</text>
+								<text class="grey good_price">￥{{item.good_price}}</text>
+								</text>
+
+								<van-button type="danger" custom-class='groupBtn'>去拼团</van-button>
+							</view>
+						</view>
+					</van-col>
+				</van-row>
+			</view>
+		</view>
+		<view wx:else>
+			<!-- 空状态 -->
+			<van-empty  description="亲，暂无拼团活动！" />
+
+		</view>
+	</template>
+	<van-tabs active="{{ active }}" bind:change="onChange">
+		<van-tab title="{{item.name}}" wx:for="{{types}}" name="{{item.type}}" tab-class='tab-class'>
+			<template is="temp" data="{{list}}"></template>
+		</van-tab>
+	</van-tabs>
+
+
+</view>

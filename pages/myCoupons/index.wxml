@@ -1,0 +1,54 @@
+<!--pages/myCoupons/index.wxml-->
+<view class="container">
+	<!-- 使用template模板 -->
+	<template name='temp'>
+		<view wx:if="{{list.length>0}}">
+			<view wx:for="{{list}}" class='item'>
+				<!-- 已过期或者已领取 灰色 -->
+				<view class='leftBox {{item.status==2||item.status==3?"grey":item.type=="discount"?"orange":"red"}}'>
+					<view>
+						<view class="discount">
+							<text  class="condition">{{item.type=='discount'?'':'￥'}}</text>{{item.discount}}</view>
+						<view class="condition">满{{item.condition}}元可用</view>
+					</view>
+				</view>
+				<view class='rightBox {{item.status==2||item.status==3?"grey":item.type=="discount"?"orange":"red"}}'>
+					<view>
+						<view class='name'>{{item.name}}</view>
+						<view class='time'>
+							<text>{{item.time}}</text>
+							<text wx:if="{{item.status==3}}">已过期</text>
+							<text wx:if="{{item.status==2}}">已领取</text>
+						</view>
+					</view>
+
+				</view>
+				<view class='topCircle'></view>
+				<view class='bottomCircle'></view>
+				<view class="type {{item.status==2||item.status==3?'grey_type':item.type=='discount'?'red_type':'purple_type'}}">
+					<text>{{item.type=='discount'?'折扣券':'满减券'}}</text>
+				</view>
+			</view>
+		</view>
+		<view wx:else>
+			<van-empty  description="亲，暂无优惠券哦！" />
+		</view>
+	</template>
+	<van-tabs active="a" bind:click="tabClick">
+		<van-tab title="未使用">
+			<view class='content'>
+				<template is='temp' data="{{list}}"></template>
+			</view>
+		</van-tab>
+		<van-tab title="已使用">
+			<view class='content'>
+				<template is='temp' data="{{list}}"></template>
+			</view>
+		</van-tab>
+		<van-tab title="已过期">
+			<view class='content'>
+				<template is='temp' data="{{list}}"></template>
+			</view>
+		</van-tab>
+	</van-tabs>
+</view>

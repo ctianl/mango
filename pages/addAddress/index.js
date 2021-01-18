@@ -18,15 +18,26 @@ Page({
     area: "",
     addressMsg: {},
 
+    address: '',
+
     showArea: false,
     areaList,
+  },
+  get: function () {
+    var that = this
+    wx.chooseLocation({
+      success: function (res) {
+        that.setData({
+          address: res.address + res.name
+        })
+      }
+    })
   },
   save: function () {
     var {
       name,
       phone,
-      area,
-      address,value
+      address
     } = this.data
 
     if (name == '' || name == null) {
@@ -49,15 +60,10 @@ Page({
         title: '手机号格式不符合要求',
         duration: 2000
       })
-    } else if (area == '' || area == null) {
-      //弹出 选择地区
-      this.setData({
-        showArea: true
-      })
     } else if (address == '' || address == null) {
       wx.showToast({
         icon: 'none',
-        title: '详细地址不能为空',
+        title: '请输入收货地址',
         duration: 2000
       })
     } else {
@@ -66,9 +72,7 @@ Page({
       var data = {
         name,
         phone,
-        area,
         address,
-        value
       }
       API.ajax('addAddress', data, function (res) {
         if (res.status == 200) {
@@ -97,7 +101,7 @@ Page({
   },
   confirm: function (e) {
     //获取value
-    var value=e.detail.values[2].code
+    var value = e.detail.values[2].code
     var arr = e.detail.values
     var province = arr[0].name
     var city = arr[1].name

@@ -1,28 +1,37 @@
 {
   "pages": [
-    "pages/orderMsg/index",
-
-    "pages/order/index",
     "pages/index/index",
-    "pages/my/index",
-    "pages/help/index",
-    "pages/good-msg/index",
-    "pages/good-list/index",
     "pages/sort/index",
-    "pages/cart/index",
-    "pages/address/index",
-    "pages/confirm/index",
-    "pages/editAddress/index",
-    "pages/addAddress/index",
-    "pages/chat/index",
-    "pages/try/index",
     "pages/sort-item/index",
-    "pages/code/index"
-  ],
+    "pages/cart/index",
+    "pages/my/index",
+    "page/good-list/index",
+    "pages/good-msg/index",
+    "pages/order/index",
+    "pages/orderMsg/index",
+    "pages/confirm/index",
+    "pages/address/index",
+    "pages/addAddress/index",
+    "pages/myCoupons/index",
+    "pages/getCouponsCenter/index",
+    "pages/group/index",
+    "pages/groupGoodMsg/index",
+    "pages/groupOrder/index",
+    "pages/groupOrderMsg/index",
+    "pages/wallet/index",
+    "pages/comment/index",
+    "pages/help/index",
+    "pages/chat/index"
+    ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示" 
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "Mango Store",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",

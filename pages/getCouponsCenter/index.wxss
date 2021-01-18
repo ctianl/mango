@@ -1,0 +1,114 @@
+/* pages/getCouponsCenter/index.wxss */
+.container {
+    padding: 0;
+    background-color:white;
+    padding-top: 20rpx;
+}
+.item{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20rpx;
+    position: relative;
+    overflow: hidden;
+}
+.topCircle{
+    position: absolute;
+    top: -15rpx;
+    left: 28.5vw;
+    background: white;
+    width:30rpx;
+    height: 30rpx;
+    border-radius: 50%;
+}
+.bottomCircle{
+    position: absolute;
+    bottom: -15rpx;
+    background: white;
+    width: 30rpx;
+    height: 30rpx;
+    border-radius: 50%;
+    left:  28.5vw;
+}
+.type{
+    position: absolute;
+    top: 0;
+    right: 0rpx;
+    background: pink;
+    width: 200rpx;
+    height: 30rpx;
+    transform: rotate(45deg) translate(60rpx,-40rpx);
+    font-size: 23rpx;
+    text-align: center;
+    color: white;
+   
+}
+.leftBox{
+    width: 30vw;
+    height: 180rpx;
+    background: red;
+    color: white;
+    border-top-left-radius: 15rpx;
+    border-bottom-left-radius: 15rpx;
+    margin-right: 1vw;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+.rightBox{
+    width: 69vw;
+    height: 180rpx;
+    background: green;
+    color: white;
+    border-top-right-radius: 15rpx;
+    border-bottom-right-radius: 15rpx;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 30rpx;
+}
+.grey{
+    /* 渐变 */
+    /* background: rgba(128, 128, 128, 0.726); */
+    background:linear-gradient(to right, rgba(128, 128, 128, 0.726), rgba(128, 128, 128, 0.555));
+}
+.orange{
+    background:linear-gradient(to right, #FABF56, #fabe56ad);
+}
+.red{
+    background: linear-gradient(to right, rgba(255, 0, 0, 0.877), rgba(255, 0, 0, 0.692));
+}
+.grey_type{
+    background: rgba(128, 128, 128, 0.658);
+}
+.purple_type{
+    background: #A771FF;
+
+}
+.red_type{
+    background: rgba(255, 0, 0, 0.76);
+}
+.discount{
+    font-weight: bold;
+    font-size: 48rpx;
+}
+.condition{
+    font-size: 25rpx;
+}
+.name{
+    font-size: 35rpx;
+    transform: translateY(-20rpx);
+}
+.time{
+    font-size: 25rpx;
+    transform: translateY(20rpx);
+    display: flex;
+    justify-content: space-between;
+    width: 60vw;
+}
+.getBtn{
+    border: 1px solid white;
+    color: white;
+    border-radius: 25rpx;
+    padding: 8rpx 12rpx;
+}

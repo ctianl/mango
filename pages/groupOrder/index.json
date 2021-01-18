@@ -1,0 +1,14 @@
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "拼团订单",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
+    "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index",
+    "van-button": "/miniprogram_npm/vant-weapp/button/index",
+    "van-empty": "/miniprogram_npm/vant-weapp/empty/index"
+
+  }
+}

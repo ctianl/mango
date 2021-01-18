@@ -1,0 +1,133 @@
+/* pages/groupOrder/index.wxss */
+page{
+    background-color: rgba(238, 238, 238, 0.527);
+
+}
+.top {
+    height: 100rpx;
+    padding: 10rpx;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+}
+
+.good_name{
+    width: 68vw;
+    font-size: 28rpx;
+    overflow: hidden;/*超出部分隐藏*/
+    white-space: nowrap;/*不换行*/
+    text-overflow:ellipsis;/*超出部分文字以...显示*/
+}
+
+.name {
+    margin-top: 6rpx;
+    margin-bottom: 5rpx;
+    font-size: 28rpx;
+}
+.container {
+    padding: 0;
+    height: fit-content;
+    /* background-color: rgba(238, 238, 238, 0.527); */
+}
+.pink {
+    color: rgba(255, 0, 0, 0.74);
+}
+.list-item{
+    background: white;
+    height: 340rpx;
+    margin-bottom: 20rpx;
+}
+.top{
+    border-bottom: 1rpx solid rgba(211, 211, 211, 0.253);
+    height: 50rpx;
+}
+/* 垂直居中 */
+.middle {
+    height: 200rpx;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.253);
+    display: flex;
+    align-items: center;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+
+}
+.text_wrap{
+    height: 130rpx;
+    width:500rpx;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-left: 20rpx;
+
+}
+.number{
+    text-align: right;
+    color: gray;
+    font-size: 23rpx;
+}
+.bottom {
+    height: 70rpx;
+    color: gray;
+    line-height: 70rpx;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 27rpx;
+}
+.bottom text{
+    font-weight: bold;
+}
+.img_wrap{
+    width: 180rpx;
+    height: 180rpx;
+    overflow: hidden;
+}
+.img_box {
+    width: 180rpx;
+    height: 180rpx;
+    float: left;
+    margin-right: 20rpx;
+}
+.good_img {
+    width: 100%;
+    height: 100%;
+}
+
+.small_btn {
+    margin-left: 15rpx;
+    border-radius: 10rpx !important;
+    font-size: 25rpx !important;
+    width: fit-content;
+    height: 50rpx;
+    transform: translateY(13.5rpx);
+    line-height:50rpx;
+    border: 1px solid #eee;
+    background-color: white;
+    color: gray;
+    display: inline-block;
+}
+
+.small_btn::after {
+    border: none;
+}
+
+.red {
+    border: 1px solid red;
+    color: red;
+}
+
+.openGroupBtn{
+    background: #F03C3C!important;
+    color: white!important;
+    margin: auto!important;
+    width:200rpx;
+    height: 60rpx;
+    font-size: 30rpx;
+    line-height: 60rpx;
+}
+.openGroupBtn::after{
+    border: none;
+}

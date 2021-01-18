@@ -1,0 +1,151 @@
+/* pages/comment/index.wxss */
+page {
+    padding: 0;
+    height: 100vh;
+    background-color: rgba(238, 238, 238, 0.527);
+    /* background: red; */
+}
+.container{
+    padding: 0;
+    height: fit-content;
+    border: 1px solid  rgba(238, 238, 238, 0.527);
+    box-sizing: border-box;
+    position: relative;
+    min-height: 100vh;
+
+}
+
+.top{
+    width: 95vw;
+    margin: auto;
+    margin-top: 2vh;
+    border-radius: 15rpx;
+    height: 260rpx;
+    background: white;
+    padding: 30rpx;
+    box-sizing: border-box;
+}
+.middle{
+    width: 95vw;
+    margin: auto;
+    margin-top: 2vh;
+    margin-bottom: 100rpx;
+    border-radius: 15rpx;
+    height: fit-content;
+    background: white;
+    padding: 30rpx;
+    box-sizing: border-box;
+}
+.order_msg {
+    display: flex;
+}
+
+.good_name {
+    flex: 4;
+    height: 100rpx;
+    font-size: 35rpx;
+    line-height: 50rpx;
+    overflow: hidden;
+    padding-left: 15rpx;
+    box-sizing: border-box;
+    color: gray;
+    /* font-size: 35rpx; */
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.img_box {
+    flex: 1;
+    height: 130rpx;
+    border-radius: 10rpx;
+    overflow: hidden;
+}
+
+.img_box image {
+    width: 100%;
+    height: 100%;
+}
+
+.des {
+    color: gray;
+    font-weight: bold;
+}
+
+.rate_box {
+    margin-top: 30rpx;
+    display: flex;
+    align-items: center;
+}
+
+.rate-style {
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+}
+
+.rate_msg {
+    font-weight: bold;
+    color: lightgray;
+}
+.uploadBox,.img_item{
+    border: 3px dotted lightgray;
+    background: rgba(238, 238, 238, 0.527);
+    border-radius: 5rpx;
+    width: 200rpx;
+    height: 200rpx;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+    float: left;
+    margin-right: 10rpx;
+    margin-bottom: 20rpx;
+}
+.img_item{
+    border: none;
+    position: relative;
+}
+.delIcon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40rpx;
+    height: 40rpx;
+
+}
+.img_item .img{
+    width: 100%;
+    height: 100%;
+}
+.cameraIcon{
+    width: 60rpx;
+    height: 60rpx;
+    overflow: hidden;
+
+}
+.cameraIcon image{
+    width: 100%;
+    height: 100%;
+}
+.clear{
+    clear: both;
+}
+textarea{
+    margin-bottom: 20rpx;
+}
+.bottom{
+    background: #FA1E8B;
+    color: white;
+    text-align: center;
+    width: 100vw;
+    height: 80rpx;
+    line-height: 80rpx;
+    position: absolute;
+    bottom: 0;
+}

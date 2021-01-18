@@ -1,0 +1,12 @@
+<view class="container">
+    <view wx:if='{{isShow}}' animation="{{animationData}}" class='item topList' wx:for='{{list}}' data-path='{{item.path}}' bindtap="toPath">
+        <image src='{{item.img}}'></image>
+    </view>
+    <!-- 操作 -->
+    <view class="other" bindtap="show">
+        <view class='i'></view>
+        <view class='i'></view>
+        <view class='i'></view>
+    </view>
+   
+</view>

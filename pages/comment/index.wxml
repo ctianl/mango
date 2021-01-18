@@ -1,0 +1,55 @@
+<!--pages/comment/index.wxml-->
+
+<view class='container'>
+	<view class="top">
+		<view class="order_msg">
+			<!-- 订单信息 -->
+			<view class="img_box">
+				<image src="{{good_img}}"></image>
+			</view>
+			<view class="good_name">
+				{{good_name}}
+			</view>
+		</view>
+		<view class="rate_box">
+			<!-- 打星 -->
+			<text class='des'>描述相符</text>
+			<van-rate custom-class="rate-style" value="{{ rate_value }}" size="{{ 30 }}" color="orange" void-color="#eee" void-icon="star" gutter="{{10}}" bind:change="onRateChange" />
+			<text class="rate_msg" style="display:none">{{rate_msg}}</text>
+		</view>
+
+
+	</view>
+	<view class="middle">
+		<view>
+			<!-- 输入评价 -->
+			<textarea placeholder="从多个角度评价宝贝，可以帮助更多想买的人" placeholder-style="color:lightgrey"  model:value="{{comment}}"/>
+			<!-- <van-uploader file-list="{{ fileList }}" /> -->
+			<view style="margin:auto;display:flex;flex-wrap:wrap">
+			 	<view class="uploadBox" bindtap="chooseImg">
+                	<view class="cameraIcon">
+                    	<image src="/images/camera.png"></image>
+                	</view>
+                	<view>拍买家秀</view>
+		    	</view>
+				<!-- <view  style="margin:auto;border:1px solid"> -->
+					<view class="img_item" wx:if="{{hasImgList}}" wx:for="{{imgList}}">
+						<!-- 删除按钮 -->
+						<image src="/images/del.png"  data-index="{{index}}" class="delIcon" bindtap="del"></image>
+						<image src="{{item}}" class="img"></image>
+					</view>
+				<!-- </view> -->
+				<view class="clear"></view>
+			</view>
+           
+
+			<!-- 拍照 -->
+		</view>
+		<view>
+			<!-- 是否公开 -->
+		</view>
+	</view>
+	<view class="bottom" bindtap="comment">
+		<text>发表评论</text> 
+	</view>
+</view>

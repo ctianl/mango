@@ -1,14 +1,14 @@
 <!--pages/good-list/index.wxml-->
 <view class="container">
-	<!-- 使用双向绑定 -->
-	<van-search model:value="{{keyword}}" use-action-slot shape="round" input-align="center" placeholder="搜索关键词">
-		<view slot="action">
-			<!-- 搜索键 -->
-			<text bindtap="search" class="search_text">搜索</text>
-			<image  catchtap="changeSortType" wx:if="{{show_type}}" class="show_type" src="/images/sortType2.png"></image>
-			<image  catchtap="changeSortType" wx:else class="show_type" src="/images/sortType1.png"></image>
+	<view class='topSearch'>
+		<view class='searchBox'>
+			<image src='/images/search.png' class='searchIcon'></image>
+			<input id='searchInput' placeholder="搜索关键词" model:value="{{keyword}}" />
 		</view>
-	</van-search>
+		<text bindtap="search" class="search_text">搜索</text>
+		<image catchtap="changeSortType" wx:if="{{show_type}}" class="show_type" src="/images/sortType2.png"></image>
+		<image catchtap="changeSortType" wx:else class="show_type" src="/images/sortType1.png"></image>
+	</view>
 	<view class="sort">
 		<view bindtap="clickSort" data-id="综合" class="'sortItem' {{active=='综合'?'active':''}}">综合</view>
 		<view bindtap="clickSort" data-id="销量" class="'sortItem' {{active=='销量'?'active':''}}">销量</view>
@@ -31,10 +31,10 @@
 		<view wx:else>
 			<van-row gutter="4">
 				<van-col span="12" wx:for="{{list}}">
-					<view bindtap="toGoodMsg" class="good" data-id="{{item.id}}">
+					<view bindtap="toGoodMsg" class="good" data-id="{{item.good_id}}">
 						<image class="img" src="{{item.img}}"></image>
 						<view class="goodMsg">
-							<view class="goodMsgTitle">{{item.title}}</view>
+							<view class="goodMsgTitle">{{item.name}}</view>
 							<view class="price">￥{{item.price}}
 								<text class="discount" wx:if="{{item.discount!=''}}">￥{{item.discount}}</text>
 							</view>
@@ -56,9 +56,9 @@
 		<view wx:else>
 
 			<!-- 另一种排序方式 -->
-			<view wx:for="{{list}}">
+			<view wx:for="{{list}}" >
 				<!-- <van-card  price="{{item.price}}" desc="{{item.intro}}" title="{{item.title}}" thumb="{{item.img}}" /> -->
-				<view class="card" bindtap="toGoodMsg"  data-id="{{item.id}}">
+				<view class="card" bindtap="toGoodMsg" data-id="{{item.good_id}}">
 					<!-- 使用布局 -->
 					<van-row>
 						<van-col span="8">
@@ -67,7 +67,7 @@
 							</view>
 						</van-col>
 						<van-col span="16">
-							<view class="card_title">{{item.title}}</view>
+							<view class="card_title">{{item.name}}</view>
 							<view class="intro">{{item.intro}}</view>
 							<view class='saled'>已售{{item.sale}}件</view>
 							<view class="price">

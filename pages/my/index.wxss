@@ -2,13 +2,14 @@
 .container {
     padding: 0;
     height: 100vh;
-    background-color: rgba(238, 238, 238, 0.527);
+    background-color: rgba(238, 238, 238, 0.262);
 }
 
 .head {
     height: 300rpx;
     width: 100vw;
-    background-color: #FFDD00;
+    background: rgba(255, 182, 193, 0.24);
+    
 }
 .head_img_box{
     border: 4rpx solid white;
@@ -68,4 +69,7 @@
 .list{
     transform: translateY(-75rpx);
 
+}
+.loginContent{
+    height:150rpx;display:flex;justify-content:center;align-items:center
 }

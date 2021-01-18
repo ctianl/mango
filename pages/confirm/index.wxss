@@ -1,6 +1,7 @@
 .container {
     padding: 0;
     height: 100vh;
+    background: rgba(238, 238, 238, 0.446);
     /* font-size: 35rpx; */
 }
 
@@ -43,11 +44,16 @@
     padding: 15rpx 5rpx 15rpx 5rpx;
     box-sizing: border-box;
     font-size: 28rpx;
+    background: white;
     padding-right:30rpx;
 }
-
+.coupon_text{
+    font-size: 26rpx;
+    color: gray;
+}
 .good_msg {
     height: 230rpx;
+    background: white;
 }
 
 .img_box {
@@ -82,4 +88,32 @@
 .van-cell-text{
     display: flex;
     align-items: center;
+}
+
+.submitBar{
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 100rpx;
+    background: white;
+    line-height: 100rpx;
+    padding-left: 60rpx;
+    box-sizing: border-box;
+    z-index: 9999;
+}
+.coupon_name{
+    color: black;
+    font-size: 28rpx;
+    text-indent: 1em;
+}
+.submitBtn{
+    transform: translate(0rpx,-5rpx);
+}
+.addressMsg{
+    /* 只能显示一行 */
+    word-break:break-all;
+	display:-webkit-box;
+	-webkit-line-clamp:1;
+	-webkit-box-orient:vertical;
+	overflow:hidden;
 }

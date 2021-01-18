@@ -26,3 +26,38 @@ page{
 .radio_list{
     padding-bottom: 200rpx;
 }
+#editView{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999999;
+    background-color: rgba(238, 238, 238, 0.44);
+    padding-top: 20rpx;
+}
+
+.bottom_btn{
+    display: block;
+    border-radius: 20rpx;
+}
+.second_cell{
+    margin-top: 20rpx;
+    margin-bottom: 50rpx;
+}
+#get{
+    width: 95%;
+    background-color: rgba(0, 128, 0, 0.727);
+    color: white;
+    border-radius: 10rpx;
+    font-size:30rpx;
+    /* margin-top: 40rpx; */
+}
+#save{
+    width: 95%;
+    background-color: #FA1E8B;
+    color: white;
+    border-radius: 10rpx;
+    font-size:30rpx;
+    margin-top: 20rpx;
+}

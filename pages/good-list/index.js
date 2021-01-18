@@ -184,9 +184,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var type = options.id
-    var hot=options.hot
+
     log(options)
+    var type = options.id||options.type
+    log(type)
     // var type =1
     var that = this
     that.setData({
@@ -198,7 +199,6 @@ Page({
     API.ajax('getGoodList', {
       type,
       sort_type: 'normal',
-      hot,
       keyword:that.data.keyword
     }, function (res) {
       if (res.status == 200) {

@@ -1,269 +1,86 @@
 <!--pages/order/index.wxml-->
 <view class="container">
-	<van-tabs active="{{ active }}" bind:change="onChange">
-		<van-tab title="全部" tab-class='tab-class'>
-			<view wx:if="{{list.length>0}}">
-				<view class="list-item" wx:for="{{list}}" data-id="{{item.id}}" data-id="{{item.id}}" bindtap="toMsg">
-					<!-- 1 待付款
+	<!-- 使用template模板 -->
+	<template name="temp">
+		<view wx:if="{{list.length>0}}">
+			<view class="list-item" wx:for="{{list}}" data-id="{{item.id}}" data-id="{{item.id}}" bindtap="toMsg">
+				<!-- 1 待付款
         			2 待发货
         			3 待收货
         			4 待评价 -->
-					<view class="top">
-						<view class="name">
-							<text class="good_name">{{item.name}}</text>
-							<text class="pink">{{item.status==1?'待付款':item.status==2?'待发货':item.status==3?'待收货':item.status==4?'待评价':''}}</text>
-						</view>
-						<view class="order_msg">
-							<text>订单号：{{item.order_sn}}</text>
-							<text>{{item.time}}</text>
-						</view>
+				<view class="top">
+					<view class="name">
+						<text class="good_name">{{item.name}}</text>
+						<text class="pink">{{item.status==1?'待付款':item.status==2?'待发货':item.status==3?'待收货':item.status==4?'待评价':item.status==5?'已完成':item.status==6?'退款中':''}}</text>
 					</view>
-					<view class="middle" >
-						<!-- 只显示两个 -->
-						<view class="img_wrap">
-							<view wx:for="{{item.good_list}}" wx:for-item="good_item" wx:for-index="good_index">
-								<view hidden="{{good_index>1}}" class="img_box">
-									<image class="good_img" src="{{good_item.img}}"></image>
-								</view>
+					<view class="order_msg">
+						<text>订单号：{{item.order_sn}}</text>
+						<text>{{item.time}}</text>
+					</view>
+				</view>
+				<view class="middle">
+					<!-- 只显示两个 -->
+					<view class="img_wrap">
+						<view wx:for="{{item.good_list}}" wx:for-item="good_item" wx:for-index="good_index">
+							<view hidden="{{good_index>1}}" class="img_box">
+								<image class="good_img" src="{{good_item.img}}"></image>
 							</view>
 						</view>
-						<view class="order_msg sum">共 {{item.sumNumber}} 件</view>
 					</view>
-					<view class="bottom">
-						<view>合计：<text class="pink">￥{{item.all_sumPrice}}</text></view>
-						<!-- 根据item.status显示按钮 -->
-						<view wx:if="{{item.status==1}}">
-							<!-- 待付款 -->
-							<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">取消</button>
-							<button class="small_btn red" catchtap="pay">付款</button>
-						</view>
-						<view wx:elif="{{item.status==2}}">
-							<!-- 待发货 -->
-							<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">申请取消</button>
-						</view>
-						<view wx:elif="{{item.status==3}}">
-							<!-- 待收货 -->
-							<button class="small_btn red" data-id="{{item.id}}" catchtap="confirm">确认收货</button>
+					<view class="order_msg sum">共 {{item.sumNumber}} 件</view>
+				</view>
+				<view class="bottom">
+					<view>合计：<text class="pink">￥{{item.all_sumPrice}}</text></view>
+					<!-- 根据item.status显示按钮 -->
+					<view wx:if="{{item.status==1}}">
+						<!-- 待付款 -->
+						<button class="small_btn" data-id="{{item.id}}" catchtap="del">取消</button>
+						<button class="small_btn red" catchtap="pay">付款</button>
+					</view>
+					<view wx:elif="{{item.status==2}}">
+						<!-- 待发货 -->
+						<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">申请取消</button>
+					</view>
+					<view wx:elif="{{item.status==3}}">
+						<!-- 待收货 -->
+						<button class="small_btn red" data-id="{{item.id}}" catchtap="confirm">确认收货</button>
 
-						</view>
-						<view wx:elif="{{item.status==4}}">
-							<!-- 待评价 -->
-							<button class="small_btn red" catchtap="comment">评价</button>
+					</view>
+					<view wx:elif="{{item.status==4}}">
+						<!-- 待评价 -->
+						<button class="small_btn red" data-id="{{item.id}}" catchtap="comment">评价</button>
 
-						</view>
 					</view>
 				</view>
 			</view>
-			<view wx:else>
-				<!-- 空状态 -->
-			</view>
+		</view>
+		<view wx:else>
+			<!-- 空状态 -->
+			<van-empty class="custom-image"  description="亲，您还没有订单信息！" />
+		</view>
+	</template>
+	<van-tabs active="{{ active }}" bind:change="onChange">
+		<van-tab title="全部" name="0" tab-class='tab-class'>
+			<template is="temp" data="{{list}}"></template>
 		</van-tab>
-		<van-tab title="待付款">
-			<view wx:if="{{list.length>0}}">
-				<view class="list-item" wx:for="{{list}}" data-id="{{item.id}}" bindtap="toMsg">
-					<!-- 1 待付款
-        			2 待发货
-        			3 待收货
-        			4 待评价 -->
-					<view class="top">
-						<view class="name">
-							<text class="good_name">{{item.name}}</text>
-							<text class="pink">{{item.status==1?'待付款':item.status==2?'待发货':item.status==3?'待收货':item.status==4?'待评价':''}}</text>
-						</view>
-						<view class="order_msg">
-							<text>订单号：{{item.order_sn}} </text>
-							<text>{{item.time}}</text>
-						</view>
-					</view>
-					<view class="middle">
-						<view class="img_box">
-							<image class="good_img" src="{{item.img}}"></image>
-						</view>
-						<view class="order_msg sum">共 {{item.sumNumber}} 件</view>
-					</view>
-					<view class="bottom">
-						<view>合计：<text class="pink">￥{{item.all_sumPrice}}</text></view>
-						<!-- 根据item.status显示按钮 -->
-						<view wx:if="{{item.status==1}}">
-							<!-- 待付款 -->
-							<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">取消</button>
-							<button class="small_btn red" catchtap="pay">付款</button>
-						</view>
-						<view wx:elif="{{item.status==2}}">
-							<!-- 待发货 -->
-							<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">申请取消</button>
-						</view>
-						<view wx:elif="{{item.status==3}}">
-							<!-- 待收货 -->
-							<button class="small_btn red" data-id="{{item.id}}" catchtap="confirm">确认收货</button>
-						</view>
-						<view wx:elif="{{item.status==4}}">
-							<!-- 待评价 -->
-							<button class="small_btn red" catchtap="comment">评价</button>
-						</view>
-					</view>
-				</view>
-			</view>
-			<view wx:else>
-				<!-- 空状态 -->
-			</view>
+		<van-tab title="待付款" name="1">
+			<template is="temp" data="{{list}}"></template>
 		</van-tab>
-		<van-tab title="待发货">
-
-			<view wx:if="{{list.length>0}}">
-				<view class="list-item" wx:for="{{list}}" data-id="{{item.id}}" bindtap="toMsg">
-					<!-- 1 待付款
-        			2 待发货
-        			3 待收货
-        			4 待评价 -->
-					<view class="top">
-						<view class="name">
-							<text class="good_name">{{item.name}}</text>
-							<text class="pink">{{item.status==1?'待付款':item.status==2?'待发货':item.status==3?'待收货':item.status==4?'待评价':''}}</text>
-						</view>
-						<view class="order_msg">
-							<text>订单号：{{item.order_sn}} </text>
-							<text>{{item.time}}</text>
-						</view>
-					</view>
-					<view class="middle">
-						<view class="img_box">
-							<image class="good_img" src="{{item.img}}"></image>
-						</view>
-						<view class="order_msg sum">共 {{item.sumNumber}} 件</view>
-					</view>
-					<view class="bottom">
-						<view>合计：<text class="pink">￥{{item.all_sumPrice}}</text></view>
-						<!-- 根据item.status显示按钮 -->
-						<view wx:if="{{item.status==1}}">
-							<!-- 待付款 -->
-							<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">取消</button>
-							<button class="small_btn red" catchtap="pay">付款</button>
-						</view>
-						<view wx:elif="{{item.status==2}}">
-							<!-- 待发货 -->
-							<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">申请取消</button>
-						</view>
-						<view wx:elif="{{item.status==3}}">
-							<!-- 待收货 -->
-							<button class="small_btn red" data-id="{{item.id}}" catchtap="confirm">确认收货</button>
-
-						</view>
-						<view wx:elif="{{item.status==4}}">
-							<!-- 待评价 -->
-							<button class="small_btn red" catchtap="comment">评价</button>
-
-						</view>
-					</view>
-				</view>
-			</view>
-			<view wx:else>
-				<!-- 空状态 -->
-			</view>
+		<van-tab title="待发货" name="2">
+			<template is="temp" data="{{list}}"></template>
 		</van-tab>
-		<van-tab title="待收货">
-			<view wx:if="{{list.length>0}}">
-				<view class="list-item" wx:for="{{list}}" data-id="{{item.id}}" bindtap="toMsg">
-					<!-- 1 待付款
-        			2 待发货
-        			3 待收货
-        			4 待评价 -->
-					<view class="top">
-						<view class="name">
-							<text class="good_name">{{item.name}}</text>
-							<text class="pink">{{item.status==1?'待付款':item.status==2?'待发货':item.status==3?'待收货':item.status==4?'待评价':''}}</text>
-						</view>
-						<view class="order_msg">
-							<text>订单号：{{item.order_sn}} </text>
-							<text>{{item.time}}</text>
-						</view>
-					</view>
-					<view class="middle">
-						<view class="img_box">
-							<image class="good_img" src="{{item.img}}"></image>
-						</view>
-						<view class="order_msg sum">共 {{item.sumNumber}} 件</view>
-					</view>
-					<view class="bottom">
-						<view>合计：<text class="pink">￥{{item.all_sumPrice}}</text></view>
-						<!-- 根据item.status显示按钮 -->
-						<view wx:if="{{item.status==1}}">
-							<!-- 待付款 -->
-							<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">取消</button>
-							<button class="small_btn red" catchtap="pay">付款</button>
-						</view>
-						<view wx:elif="{{item.status==2}}">
-							<!-- 待发货 -->
-							<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">申请取消</button>
-						</view>
-						<view wx:elif="{{item.status==3}}">
-							<!-- 待收货 -->
-							<button class="small_btn red" data-id="{{item.id}}" catchtap="confirm">确认收货</button>
-
-						</view>
-						<view wx:elif="{{item.status==4}}">
-							<!-- 待评价 -->
-							<button class="small_btn red" catchtap="comment">评价</button>
-
-						</view>
-					</view>
-				</view>
-			</view>
-			<view wx:else>
-				<!-- 空状态 -->
-			</view>
+		<van-tab title="待收货" name="3">
+			<template is="temp" data="{{list}}"></template>
 		</van-tab>
-		<van-tab title="待评价">
-			<view wx:if="{{list.length>0}}">
-				<view class="list-item" wx:for="{{list}}" data-id="{{item.id}}" bindtap="toMsg">
-					<!-- 1 待付款
-        			2 待发货
-        			3 待收货
-        			4 待评价 -->
-					<view class="top">
-						<view class="name">
-							<text class="good_name">{{item.name}}</text>
-							<text class="pink">{{item.status==1?'待付款':item.status==2?'待发货':item.status==3?'待收货':item.status==4?'待评价':''}}</text>
-						</view>
-						<view class="order_msg">
-							<text>订单号：{{item.order_sn}} </text>
-							<text>{{item.time}}</text>
-						</view>
-					</view>
-					<view class="middle">
-						<view class="img_box">
-							<image class="good_img" src="{{item.img}}"></image>
-						</view>
-						<view class="order_msg sum">共 {{item.sumNumber}} 件</view>
-					</view>
-					<view class="bottom">
-						<view>合计：<text class="pink">￥{{item.all_sumPrice}}</text></view>
-						<!-- 根据item.status显示按钮 -->
-						<view wx:if="{{item.status==1}}">
-							<!-- 待付款 -->
-							<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">取消</button>
-							<button class="small_btn red" catchtap="pay">付款</button>
-						</view>
-						<view wx:elif="{{item.status==2}}">
-							<!-- 待发货 -->
-							<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">申请取消</button>
-						</view>
-						<view wx:elif="{{item.status==3}}">
-							<!-- 待收货 -->
-							<button class="small_btn red" data-id="{{item.id}}" catchtap="confirm">确认收货</button>
 
-						</view>
-						<view wx:elif="{{item.status==4}}">
-							<!-- 待评价 -->
-							<button class="small_btn red" catchtap="comment">评价</button>
-
-						</view>
-					</view>
-				</view>
-			</view>
-			<view wx:else>
-				<!-- 空状态 -->
-			</view>
+		<van-tab title="待评价" name="4">
+			<template is="temp" data="{{list}}"></template>
+		</van-tab>
+		<van-tab title="已完成" name="5">
+			<template is="temp" data="{{list}}"></template>
+		</van-tab>
+		<van-tab title="退款中" name="6">
+			<template is="temp" data="{{list}}"></template>
 		</van-tab>
 	</van-tabs>
 	<!-- 选择付款方式 遮盖层 -->

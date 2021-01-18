@@ -1,60 +1,75 @@
 <view class="container">
 
 	<view wx:if="{{isEdit}}" class="top">
-		<van-button bindtap="edit" type="primary" size="small">编辑</van-button>
+		<van-button bindtap="edit" type="primary" plain color='#FF495E' size="small">编辑</van-button>
 	</view>
 	<view wx:else class="top">
-		<van-button bindtap="finish" type="info" size="small">完成</van-button>
+		<van-button bindtap="finish" type="info" color='#FF495E' size="small">完成</van-button>
 	</view>
 
-	<view wx:for="{{good_list}}" class="good_list">
-		<view class="good_item">
-			<van-row>
-				<van-col span="2">
-					<view class="checkbox">
-						<van-checkbox-group value="{{ result }}" bind:change="onChange">
-							<van-checkbox name="{{item.good_id}}" checked-color="#FF495E"></van-checkbox>
-						</van-checkbox-group>
-					</view>
-
-				</van-col>
-				<van-col span="22">
-					<van-col span="6">
-						<image data-id="item.good_id" bindtap="toGoodMsg" src="{{item.img}}" class="img"></image>
-
-					</van-col>
-					<van-col span="16">
-						<view class="right">
-							<view bindtap="toGoodMsg" data-id="{{item.good_id}}">{{item.name}}</view>
-							<!-- 是否有选定类型 -->
-							<!-- 不换行 -->
-							<view wx:if="{{item.type}}" class="item_type">{{item.type}}</view>
-							<view class="price">￥{{item.price}}</view>
-							<!-- 步进器 -->
-							<van-stepper class="step" value="{{item.number}}" bind:change="onChange" input-class="input-class" />
-
+	<view wx:if='{{good_list.length>0}}'>
+		<view wx:for="{{good_list}}" class="good_list">
+			<view class="good_item">
+				<van-row>
+					<van-col span="2">
+						<view class="checkbox">
+							<van-checkbox-group value="{{ result }}" bind:change="onCheckboxChange">
+								<van-checkbox name="{{item.good_id}}" checked-color="#FF495E"></van-checkbox>
+							</van-checkbox-group>
 						</view>
+
 					</van-col>
+					<van-col span="22">
+						<van-col span="6">
+							<image data-id="{{item.good_id}}" bindtap="toGoodMsg" src="{{item.img}}" class="img"></image>
 
-				</van-col>
-			</van-row>
+						</van-col>
+						<van-col span="16">
+							<view class="right">
+								<view bindtap="toGoodMsg" data-id="{{item.good_id}}">{{item.name}}</view>
+								<!-- 是否有选定类型或者尺寸 -->
+								<!-- 不换行 -->
 
+								<view class="price">￥{{item.price}}
+									<text wx:if="{{item.type}}" class="item_type">{{item.size==undefined? '':item.size+';'}} {{item.type}}</text>
+								</view>
+								<!-- 步进器 -->
+								<van-stepper class="step" data-id="{{item.good_id}}" value="{{item.number}}" bind:change="onStepChange" input-class="input-class" />
+
+							</view>
+						</van-col>
+
+					</van-col>
+				</van-row>
+
+			</view>
 		</view>
+	</view>
+	<view wx:else>
+		<!-- 空状态 -->
+		<van-empty description="暂无购物车信息" >
+			<van-button round type="danger" class="bottom-button" bind:click='toShop' >
+				去购物
+			</van-button>
+		</van-empty>
 	</view>
 
 	<view class="bottom">
 		<van-row>
 			<van-col span="5">
-					<van-checkbox checked-color="#FF495E" custom-class="full" value="{{ checked }}" bind:change="onRadioChange">
-						全选
-					</van-checkbox>
+				<van-checkbox checked-color="#FF495E" custom-class="full" value="{{ checked }}" bind:change="onRadioChange">
+					全选
+				</van-checkbox>
 			</van-col>
 			<van-col span="14">
-				<text class="sum_price">合计：￥{{sum_price}}</text>
+				<view class="sum_price">
+					<text wx:if="{{isEdit}}">合计：￥{{sum_price}}</text>
+					<text style="color:white" wx:else>33</text>
+				</view>
 			</van-col>
 			<van-col span="5">
-				<view class="actionBtn" wx:if="{{isEdit}}">去结算</view>
-				<view class="actionBtn" wx:else>删除</view>
+				<view class="actionBtn" bindtap="toCompute" wx:if="{{isEdit}}">去结算</view>
+				<view class="actionBtn" bindtap="delGood" wx:else>删除</view>
 			</van-col>
 		</van-row>
 

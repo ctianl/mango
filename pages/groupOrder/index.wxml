@@ -1,0 +1,76 @@
+<!--pages/groupOrder/index.wxml-->
+<view class="container">
+	<!-- 使用template模板 -->
+	<template name="temp">
+		<view wx:if="{{list.length>0}}" style="padding-top:20rpx">
+			<view class="list-item" wx:for="{{list}}" data-id="{{item.id}}" data-id="{{item.id}}" bindtap="toMsg">
+				<!-- 1 待付款
+        			2 待发货
+        			3 待收货
+        			4 待评价 -->
+				<view class="top">
+					<view class="name">
+						<text class="pink">{{item.status==1?'待付款':item.status==2?'拼团中':item.status==3?'待发货':item.status==4?'待收货':item.status==5?'退款中':item.status==6?'已完成':''}}</text>
+					</view>
+				</view>
+				<view class="middle">
+					<!-- 只显示两个 -->
+					<view class="img_wrap">
+						<image class="good_img" src="{{item.img}}"></image>
+					</view>
+					<view class='text_wrap'><text class="good_name">{{item.good_name}}</text>
+                        <text class="number">×{{item.number}}</text>
+                    </view>
+				</view>
+				<view class="bottom">
+					<view>合计：<text class="pink">￥{{item.actual_price}}</text></view>
+					<!-- 根据item.status显示按钮 -->
+					<view wx:if="{{item.status==1}}">
+						<!-- 待付款 -->
+						<button class="small_btn" data-id="{{item.id}}" catchtap="del">取消</button>
+						<button class="small_btn red" catchtap="pay">付款</button>
+					</view>
+					<view wx:elif="{{item.status==3}}">
+						<!-- 待发货 -->
+						<button class="small_btn" data-id="{{item.id}}" catchtap="cancel">申请取消</button>
+					</view>
+					<view wx:elif="{{item.status==4}}">
+						<!-- 待收货 -->
+						<button class="small_btn red" data-id="{{item.id}}" catchtap="confirm">确认收货</button>
+
+					</view>
+				</view>
+			</view>
+		</view>
+		<view wx:else>
+			<!-- 空状态 -->
+			<van-empty class="custom-image"  description="亲，您还没有订单信息！" />
+			<button class='openGroupBtn' bindtap="openGroup">去开团</button>
+
+		</view>
+	</template>
+	<van-tabs active="{{ active }}" bind:change="onChange">
+		<van-tab title="全部" name="0" tab-class='tab-class'>
+			<template is="temp" data="{{list}}"></template>
+		</van-tab>
+		<van-tab title="待付款" name="1">
+			<template is="temp" data="{{list}}"></template>
+		</van-tab>
+		<van-tab title="拼团中" name="2">
+			<template is="temp" data="{{list}}"></template>
+		</van-tab>
+		<van-tab title="待发货" name="3">
+			<template is="temp" data="{{list}}"></template>
+		</van-tab>
+
+		<van-tab title="待收货" name="4">
+			<template is="temp" data="{{list}}"></template>
+		</van-tab>
+		<van-tab title="退款中" name="5">
+			<template is="temp" data="{{list}}"></template>
+		</van-tab>
+		<van-tab title="已完成" name="6">
+			<template is="temp" data="{{list}}"></template>
+		</van-tab>
+	</van-tabs>
+</view>

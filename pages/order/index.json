@@ -14,7 +14,9 @@
     "van-col": "/miniprogram_npm/vant-weapp/col/index",
     "van-popup": "/miniprogram_npm/vant-weapp/popup/index",
     "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
-    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index",
+    "van-empty": "/miniprogram_npm/vant-weapp/empty/index"
+
 
 
 

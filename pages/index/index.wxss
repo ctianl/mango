@@ -1,5 +1,7 @@
 /**index.wxss**/
-
+page {
+  background: rgba(255, 182, 193, 0.24);
+}
 
 .userinfo {
   display: flex;
@@ -30,7 +32,9 @@
   padding: 0;
 }
 
-.headPic,swiper,swiper-item {
+.headPic,
+swiper,
+swiper-item {
   width: 100vw;
   height: 400rpx;
   /* position: absolute; */
@@ -76,6 +80,8 @@
 .group {
   font-size: 35rpx;
   color: black;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
 }
 
 .click_to_enter {
@@ -90,10 +96,12 @@
 }
 
 .sort {
-  height: 150rpx;
+  height: 270rpx;
   width: 100vw;
   font-size: 28rpx;
-  margin-top: 40rpx
+  margin-top: 0rpx;
+  background: white;
+  margin-bottom: 20rpx;
 }
 
 .sort_item {
@@ -113,7 +121,7 @@
 .box {
   /* border: 1px solid ; */
   width: 100vw;
-  margin-bottom: 60rpx;
+  background: white;
 }
 
 .heading {
@@ -173,14 +181,226 @@
   text-align: left;
   position: relative;
   color: grey;
-  line-height: 50rpx
+  /* line-height: 50rpx; */
+  font-size: 28rpx;
 }
 
 .content-item-price {
-  color: #BDA97D;
+  color: #FA1E8B;
   text-align: right;
   position: absolute;
   right: 0;
   bottom: 0;
   font-size: 35rpx
+}
+
+.nav_fixed {
+  position: fixed;
+  top: 0rpx;
+  left: 0;
+  width: 100%;
+  height: 80rpx;
+  background: white;
+  z-index: 99999;
+}
+
+.newGood {
+  background: rgba(255, 182, 193, 0.24);
+  height: fit-content;
+  width: 100vw;
+  padding-bottom: 20rpx;
+}
+
+.whiteBox {
+  background: white;
+  border-radius: 20rpx;
+  width: 95vw;
+  height: fit-content;
+  margin: auto;
+  padding: 20rpx;
+  padding-bottom: 3rpx;
+  box-sizing: border-box;
+}
+
+.new_text {
+  text-align: center;
+  font-size: 45rpx;
+  font-weight: bold;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.new_text text {
+  font-style: italic;
+
+}
+
+.newGoodItem {
+  border: 1px solid pink;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+  height: 300rpx;
+  position: relative;
+
+}
+
+.new_good_msg {
+  position: absolute;
+  width: 370rpx;
+  height: 300rpx;
+  right: 0;
+  text-align: center;
+
+}
+
+.new_good_img,
+.new_good_msg {
+  display: inline-block;
+}
+
+.clear {
+  clear: both;
+}
+
+.new_good_name {
+  font-size: 45rpx;
+  font-weight: bold;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.price_text {
+  font-size: 25rpx;
+
+}
+
+.quickBuy {
+  background: #FA1E8B;
+  color: white;
+  width: 230rpx;
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
+  text-align: left;
+  position: absolute;
+  right: 0;
+  bottom: 40rpx;
+  padding-left: 20rpx;
+}
+
+.love_icon {
+  width: 20rpx;
+  height: 20rpx;
+  margin-right: 15rpx;
+}
+
+.cart_icon {
+  width: 30rpx;
+  height: 30rpx;
+  background: white;
+  border-radius: 50%;
+  padding: 5rpx;
+  display: inline-block;
+  margin-left: 30rpx;
+  transform: translateY(8rpx);
+}
+
+.grey {
+  color: grey;
+  font-size: 25rpx;
+  text-decoration: line-through;
+}
+
+.new_good_img {
+  overflow: hidden;
+  width: 300rpx;
+  height: 300rpx;
+
+}
+
+.new_good_img image {
+  width: 100%;
+  height: 100%;
+}
+
+.sat_text {
+  text-align: center;
+  position: relative;
+  font-weight: bold;
+  font-size: 30rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+
+}
+
+.bg {
+  width: 70rpx;
+  height: 70rpx;
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  top: 15%;
+  /* z-index: -1; */
+}
+
+.saturday {
+  background: white;
+}
+
+.group{
+  height: 600rpx;
+  background: white;
+}
+.group-item{
+  text-align: center;
+  font-size: 25rpx;
+}
+.group-item image{
+  width: 180rpx;
+  height: 220rpx;
+}
+.row{
+  width: 100vw;
+  padding-left: 70rpx;
+  padding-right: 70rpx;
+  box-sizing: border-box;
+}
+.left-img{
+  text-align: center;
+  font-size: 25rpx;
+
+}
+.left-img image{
+  width: 100%;
+  height: 300rpx;
+}
+.right-img{
+  font-size: 25rpx;
+  text-align: center;
+  height: 100%;
+  height: 350rpx;
+  position: relative;
+}
+.right-img .new_text {
+  position: absolute;
+ left: 50rpx;
+  top: -10rpx;
+}
+.right-img image{
+  width: 200rpx;
+  height: 200rpx;
+  position: absolute;
+  bottom: 60rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.right-img .pd_name{
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.first-row{
+  height:350rpx;
+  background: rgba(238, 238, 238, 0.24);
 }

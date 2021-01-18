@@ -1,0 +1,22 @@
+{
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "发表评价",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "van-rate": "/miniprogram_npm/vant-weapp/rate/index",
+    "van-field": "/miniprogram_npm/vant-weapp/field/index",
+    "van-uploader": "/miniprogram_npm/vant-weapp/uploader/index",
+
+
+    "van-button": "/miniprogram_npm/vant-weapp/button/index",
+    "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+    "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index",
+    "van-row": "/miniprogram_npm/vant-weapp/row/index",
+    "van-col": "/miniprogram_npm/vant-weapp/col/index",
+    "van-popup": "/miniprogram_npm/vant-weapp/popup/index",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog/index"
+  }
+}

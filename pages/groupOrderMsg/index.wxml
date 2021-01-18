@@ -1,0 +1,111 @@
+<!--pages/groupOrderMsg/index.wxml-->
+<view class="container">
+	<view class="status_box">
+		<!-- 订单状态 -->
+		<view>{{status==1?'待付款':status==2?'拼团中':status==3?'待发货':status==4?'待收货':status==5?'退款中':status==6?'已完成':''}}</view>
+	</view>
+
+	<view>
+		<!-- 收货地址信息 -->
+		<van-cell-group>
+			<van-cell bindtap="toAddress" center border="{{ false }}">
+				<view slot="title" style="position:relative">
+					<view class="van-cell-text">
+						<van-icon custom-class='location-icon' name="location-o" size="30rpx" />
+					</view>
+					<view class="van-cell-text contact_person">{{address_name}} {{address_phone}}</view>
+					<view class="van-cell-text address" style="">{{address_area}} {{address_detail}}</view>
+				</view>
+			</van-cell>
+		</van-cell-group>
+	</view>
+
+	<view class="box">
+		<!-- 商品信息 -->
+		<van-cell title="商品列表" />
+		<view class="good">
+			<text>订单号：{{order_sn}}</text>
+			<text>{{time}}</text>
+		</view>
+		<!-- 使用布局 -->
+		<van-row>
+			<van-col span="8">
+				<view class="img_box" bindtap="toGoodMsg">
+					<image src="{{img}}"></image>
+				</view>
+			</van-col>
+			<van-col span="16">
+				<view  bindtap="toGoodMsg">
+					<view class="good_name">{{good_name}}</view>
+					<view class="grey single_msg">
+						<text>×{{number}}</text>
+						<text class="pink">￥{{single_price}}</text>
+					</view>
+				</view>
+
+			</van-col>
+		</van-row>
+		<van-cell title="">
+			<text>共 {{number}} 件商品，合计：<text class="pink">￥{{sum_price}}</text></text>
+		</van-cell>
+
+	</view>
+
+	<view class="box money_box">
+		<!-- 订单金额 -->
+		<van-cell title="订单金额" />
+		<van-cell border="{{false}}" custom-class='cell_class'>
+			<view slot="title" class="monny-title">商品金额:</view>
+			<text class="pink">￥{{sum_price}}</text>
+		</van-cell>
+		<van-cell border="{{false}}" custom-class='cell_class'>
+			<view slot="title" class="monny-title">配送费用:</view>
+			<text class="pink">+￥{{delivery_price}}</text>
+		</van-cell>
+		<van-cell border="{{false}}" custom-class='cell_class'>
+			<view slot="title" class="monny-title">实付金额:</view>
+			<text class="pink">￥{{actual_price}}</text>
+		</van-cell>
+
+	</view>
+
+	<!-- 待付款——如果没有付款 -->
+	<view wx:if="{{status==1}}" class="bottom_pay">
+		<view class="bottom_btn cancelBtn" bindtap="del">取消订单</view>
+		<view class="bottom_btn toPayBtn" bindtap="toPay">去付款</view>
+	</view>
+	<!-- 待发货 可取消订单 -->
+	<view wx:if="{{status==3}}" class="bottom cancelBotteom">
+		<text bindtap="cancel">取消订单</text>
+	</view>
+	<!-- 待收货 -->
+	<view wx:if="{{status==4}}" class="bottom commentBottom">
+		<text bindtap="confirm">确认收货</text>
+	</view>
+
+
+
+	<!-- 选择付款方式 遮盖层 -->
+	<van-popup show="{{showChoosePay }}" custom-class="popUpStyle" bind:close="onCloseChoosePay">
+		<van-cell title="请选择支付方式" size="large" />
+		<van-cell bind:click="wechat_pay">
+			<view slot="title" class="payMethodBox">
+				<van-icon name="wechat" color="green" size="20px" /><text class="payMethod">微信支付</text>
+			</view>
+		</van-cell>
+		<van-cell bind:click="balance_pay">
+			<view slot="title" class="payMethodBox">
+				<van-icon name="gold-coin" color="orange" size="20px" /><text class="payMethod">余额支付</text>
+			</view>
+		</van-cell>
+	</van-popup>
+	<!-- 微信支付 二维码 -->
+	<van-popup show="{{showPayCode }}" custom-class="payCodeBox" bind:close="onClosePayCode">
+		<view></view>
+		<view>
+			<image src="{{codeImg}}"></image>
+		</view>
+		<view>请使用微信扫一扫完成支付</view>
+	</van-popup>
+	<van-dialog id="van-dialog" />
+</view>

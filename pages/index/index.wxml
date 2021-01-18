@@ -4,9 +4,9 @@
 	<!-- 弄一个swiper -->
 	<view class="headPic">
 		<swiper indicator-dots="true" autoplay="{{autoplay}}" interval="{{interval}}" indicator-color="lightgrey" indicator-active-color="white">
-				<swiper-item wx:for="{{ad_img}}">
-					<image src="{{item}}" class="slide-image" mode="scaleToFill"/>
-				</swiper-item>
+			<swiper-item wx:for="{{ad_img}}">
+				<image src="{{item}}" class="slide-image" mode="aspectFill" />
+			</swiper-item>
 		</swiper>
 	</view>
 	<!-- 粉丝群 -->
@@ -29,7 +29,37 @@
 		</van-row>
 
 	</view>
+
+	<view class="newGood">
+		<view class='new_text'><text> NEW!</text> 新品抢先购</view>
+		<!-- 显示三款产品 -->
+		<view class='whiteBox'>
+			<view wx:for='{{newGoodList}}' class='newGoodItem' bindtap="toGoodMsg" data-id='{{item.good_id}}'>
+				<!-- 使用布局 -->
+				<view class='new_good_img' >
+					<image src="{{item.img}}" mode='aspectFill'></image>
+				</view>
+				<view class='new_good_msg'>
+					<view class='new_good_name'>
+						<image class='love_icon' src="/images/love.png"></image>{{item.single_intro}}
+					</view>
+					<view>
+						<text class="price_text">到手价:￥</text>
+						<text class="new_good_name">{{item.discount}}</text>
+						<text class='grey'>{{item.price}}</text>
+					</view>
+
+				</view>
+				<view class='quickBuy'>
+					立即购买
+					<image class='cart_icon' src="/images/cartIcon.png"></image>
+				</view>
+			</view>
+		</view>
+	</view>
+
 	<view class="sort">
+		<view class='new_text'><text>CATEGORY</text></view>
 		<!-- 分类 -->
 		<!-- 布局 -->
 		<van-row>
@@ -43,24 +73,100 @@
 		</van-row>
 	</view>
 
-	<!-- 所有信息 -->
-	<view class="box" wx:for="{{all_msg}}" wx:for-item="type">
-		<view class="heading">
-			<text>{{type.name}}</text>
+	<!-- 拼单 -->
+	<view class='group' bindtap="toGroupList">
+		<!-- 这里的图片不能使用循环 -->
+		<view class="first-row">
+			<van-row>
+				<van-col span="10">
+					<view class="left-img">
+						<image mode='aspectFill' src='{{groupImg1}}' data-id='{{groupItemId1}}' catchtap="toGroupGood"></image>
+						<view>{{groupName1}}</view>
+					</view>
+				</van-col>
+				<van-col span="14">
+					<view class="right-img">
+						<view class='new_text'><text>#Group buying</text></view>
+						<image mode='aspectFill' src='{{groupImg2}}' data-id='{{groupItemId2}}' catchtap="toGroupGood"></image>
+						<view class='pd_name'>{{groupName2}}</view>
+					</view>
+				</van-col>
+			</van-row>
 		</view>
+		<!-- 使用布局 -->
+		<view class='row'>
+			<van-row gutter="20">
+				<van-col span="8">
+					<view class='group-item'>
+						<image mode='aspectFill' src='{{groupImg3}}' data-id='{{groupItemId3}}' catchtap="toGroupGood"></image>
+						<view>{{groupName3}}</view>
+					</view>
+
+				</van-col>
+				<van-col span="8">
+					<view class='group-item'>
+						<image mode='aspectFill' src='{{groupImg4}}' data-id='{{groupItemId4}}' catchtap="toGroupGood"></image>
+						<view>{{groupName4}}</view>
+					</view>
+				</van-col>
+				<van-col span="8">
+					<view class='group-item'>
+						<image mode='aspectFill' src='{{groupImg5}}' data-id='{{groupItemId5}}' catchtap="toGroupGood"></image>
+						<view>{{groupName5}}</view>
+					</view>
+				</van-col>
+			</van-row>
+		</view>
+
+	</view>
+
+	<!-- 会进行定位 -->
+	<view class="saturday {{scrollTop > 1200 ? 'nav_fixed' : ''}}">
 		<van-row>
-			<view class="content" wx:for="{{type.list}}">
-				<!-- 布局 -->
-				<van-col span="12">
-					<view class="content-item" bindtap="toGoodMsg" data-id="{{item.id}}">
+			<van-col span="6">
+				<view class='sat_text'>
+					<text>周</text>
+					<image src="/images/bg.png" class="bg"></image>
+				</view>
+			</van-col>
+			<van-col span="6">
+				<view class='sat_text'>
+					<text>六</text>
+					<image src="/images/bg.png" class="bg"></image>
+				</view>
+			</van-col>
+			<van-col span="6">
+				<view class='sat_text'>
+					<text>上</text>
+					<image src="/images/bg.png" class="bg"></image>
+				</view>
+			</van-col>
+			<van-col span="6">
+				<view class='sat_text'>
+					<text>新</text>
+					<image src="/images/bg.png" class="bg"></image>
+				</view>
+			</van-col>
+		</van-row>
+	</view>
+
+	<!-- 所有信息 -->
+	<view class="box">
+		<!-- <view class="heading">
+			<text>{{type.name}}</text>
+		</view> -->
+		<van-row>
+
+			<view class="content">
+				<van-col span="12" wx:for="{{all_msg}}">
+					<view class="content-item" bindtap="toGoodMsg" data-id="{{item.good_id}}">
 						<image class="content-item-img" src="{{item.img}}" mode="aspectFill"></image>
-						<view class="content-item-text">{{item.title}}
+						<view class="content-item-text">{{item.name}}
 							<text class="content-item-price">￥{{item.price}}</text>
 						</view>
 					</view>
 				</van-col>
 			</view>
 		</van-row>
-
 	</view>
 </view>

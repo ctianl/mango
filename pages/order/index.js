@@ -4,8 +4,7 @@ var {
     log
 } = console
 
-import Dialog from '../../miniprogram_npm/vant-weapp/dialog/dialog.js';
-
+var token = wx.getStorageSync('token')
 
 Page({
 
@@ -18,57 +17,113 @@ Page({
         //2 待发货
         //3 待收货
         //4 待评价
+        //5 已完成
+        //6 退款中
+
+        active: 0,
         list: [],
         showChoosePay: false,
         codeImg: '',
         showPayCode: false
 
     },
+    getOrderList: function (id) {
+        var that = this
+        wx.showNavigationBarLoading()
+        API.ajax('getOrderList', {
+            id,
+            token
+        }, function (res) {
+            wx.hideNavigationBarLoading()
+            log(res)
+            if (res.status == 200) {
+                that.setData({
+                    list: res.data.list
+                })
+            }
+        })
+    },
+    del: function (e) {
+        var that = this
+        //获取订单ID
+        var id = e.currentTarget.dataset.id
+        //是否删除订单
+        wx.showModal({
+            title: '操作提示',
+            content: "是否取消此订单？", //提示内容
+            success(res) {
+                if (res.confirm) {
+                    //发送请求，删除此订单
+                    API.ajax('delOrder', {
+                        id
+                    }, function (res) {
+                        if (res.status == 200) {
+                            wx.showToast({
+                                title: res.data.msg,
+                            })
+                            //重新加载列表数据
+                            that.getOrderList(0)
+                            // wx.showNavigationBarLoading()
+                            // API.ajax('getOrderList', {
+                            //     id: 0
+                            // }, function (res) {
+                            //     wx.hideNavigationBarLoading()
+                            //     log(res)
+                            //     if (res.status == 200) {
+                            //         that.setData({
+                            //             list: res.data.list
+                            //         })
+                            //     }
+                            // })
+                        }
+                    })
+                }
+            }
+        })
 
+    },
     //取消
     cancel: function (e) {
         var that = this
-        log('取消')
         //获取订单ID
         var id = e.currentTarget.dataset.id
 
-        Dialog.confirm({
-                title: '操作提示',
-                message: '确定要取消该订单吗？',
-            })
-            .then(() => {
-                // on confirm
+        //是否删除订单
+        wx.showModal({
+            title: '操作提示',
+            content: "是否取消此订单？", //提示内容
+            success(res) {
+                if (res.confirm) {
+                    //发送请求，删除此订单
+                    API.ajax('cancelOrder', {
+                        id
+                    }, function (res) {
+                        if (res.status == 200) {
+                            wx.showToast({
+                                title: res.data.msg,
+                            })
+                            //重新加载列表数据
+                            that.getOrderList(0)
 
-                //发送请求，删除此订单
-                API.ajax('delOrder', {
-                    id
-                }, function (res) {
-                    if (res.status == 200) {
-                        wx.showToast({
-                            title: res.data.msg,
-                        })
-                        //重新加载列表数据
-                        wx.showNavigationBarLoading()
-                        API.ajax('getOrderList', {
-                            id: 0
-                        }, function (res) {
-                            wx.hideNavigationBarLoading()
-                            log(res)
-                            if (res.status == 200) {
-                                that.setData({
-                                    list: res.data.list
-                                })
-                            }
-                        })
-                    }
-                })
-            })
-            .catch(() => {
-                // on cancel
-                //无操作
-            });
+                            // wx.showNavigationBarLoading()
+                            // API.ajax('getOrderList', {
+                            //     id: 0
+                            // }, function (res) {
+                            //     wx.hideNavigationBarLoading()
+                            //     log(res)
+                            //     if (res.status == 200) {
+                            //         that.setData({
+                            //             list: res.data.list
+                            //         })
+                            //     }
+                            // })
+                        }
+                    })
+                }
+            }
+        })
+
     },
-
     //付款
     pay: function (e) {
         var that = this
@@ -135,46 +190,49 @@ Page({
         //获取订单ID
         var id = e.currentTarget.dataset.id
 
-        Dialog.confirm({
-                title: '操作提示',
-                message: '是否已收货？',
-            })
-            .then(() => {
-                // on confirm
+        wx.showModal({
+            title: '操作提示',
+            content: "是否已收货？", //提示内容
+            success(res) {
+                if (res.confirm) {
+                    //发送请求，确认收货
+                    API.ajax('confirmTakeDelivery', {
+                        id
+                    }, function (res) {
+                        if (res.status == 200) {
+                            wx.showToast({
+                                title: res.data.msg,
+                            })
+                            //重新加载列表数据
+                            that.getOrderList(0)
 
-                //发送请求，确认收货
-                API.ajax('confirmTakeDelivery', {
-                    id
-                }, function (res) {
-                    if (res.status == 200) {
-                        wx.showToast({
-                            title: res.data.msg,
-                        })
-                        //重新加载列表数据
-                        wx.showNavigationBarLoading()
-                        API.ajax('getOrderList', {
-                            id: 0
-                        }, function (res) {
-                            wx.hideNavigationBarLoading()
-                            log(res)
-                            if (res.status == 200) {
-                                that.setData({
-                                    list: res.data.list
-                                })
-                            }
-                        })
-                    }
-                })
-            })
-            .catch(() => {
-                // on cancel
-                //无操作
-            });
+                            // wx.showNavigationBarLoading()
+                            // API.ajax('getOrderList', {
+                            //     id: 0
+                            // }, function (res) {
+                            //     wx.hideNavigationBarLoading()
+                            //     log(res)
+                            //     if (res.status == 200) {
+                            //         that.setData({
+                            //             list: res.data.list
+                            //         })
+                            //     }
+                            // })
+                        }
+                    })
+                }
+            }
+        })
+
     },
 
     //评价
     comment: function (e) {
-        log('评价')
+        //携带商品信息  订单id
+        var id = e.currentTarget.dataset.id
+        wx.navigateTo({
+            url: `/pages/comment/index?id=${id}`,
+        })
 
     },
     toMsg: function (e) {
@@ -198,24 +256,43 @@ Page({
             id = 3
         } else if (title == '待评价') {
             id = 4
+        } else if (title == '已完成') {
+            id = 5
+        } else if (title == '退款中') {
+            id = 6
         }
-        wx.showNavigationBarLoading()
-        API.ajax('getOrderList', {
-            id
-        }, function (res) {
-            wx.hideNavigationBarLoading()
-            log(res)
-            if (res.status == 200) {
-                that.setData({
-                    list: res.data.list
-                })
-            }
-        })
+        that.getOrderList(id)
+
+        // wx.showNavigationBarLoading()
+        // API.ajax('getOrderList', {
+        //     id
+        // }, function (res) {
+        //     wx.hideNavigationBarLoading()
+        //     log(res)
+        //     if (res.status == 200) {
+        //         that.setData({
+        //             list: res.data.list
+        //         })
+        //     }
+        // })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        token = wx.getStorageSync('token')
+
+        var id
+        //查看是否有id
+        if ('id' in options) {
+            id = options.id
+            this.setData({
+                active: id
+            })
+        } else {
+            id = 0
+        }
+
         var that = this
         //判断
         //全部 0
@@ -225,18 +302,20 @@ Page({
         //待评价 4
 
         //获取全部
-        wx.showNavigationBarLoading()
-        API.ajax('getOrderList', {
-            id: 0
-        }, function (res) {
-            wx.hideNavigationBarLoading()
-            log(res)
-            if (res.status == 200) {
-                that.setData({
-                    list: res.data.list
-                })
-            }
-        })
+        that.getOrderList(id)
+
+        // wx.showNavigationBarLoading()
+        // API.ajax('getOrderList', {
+        //     id
+        // }, function (res) {
+        //     wx.hideNavigationBarLoading()
+        //     log(res)
+        //     if (res.status == 200) {
+        //         that.setData({
+        //             list: res.data.list
+        //         })
+        //     }
+        // })
     },
 
     /**

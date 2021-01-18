@@ -1,9 +1,11 @@
 /* pages/good-list/index.wxss */
 .container {
     padding: 0;
-    height: 100vh;
-    background-color: #eee;
+    min-height: 100vh;
+    height: fit-content;
+    background-color: rgba(238, 238, 238, 0.438);
 }
+
 /* .empty{
     background-color: white;
 } */
@@ -14,16 +16,18 @@
     background-color: white;
 
 }
-.search_text{
+
+.search_text {
     color: gray;
-    transform: translateX(-12rpx);
+    /* transform: translateX(-12rpx); */
     display: inline-block;
- 
+
 }
+
 .show_type {
     width: 40rpx;
     height: 40rpx;
-    transform: translateY(10rpx);
+    /* transform: translateX(10rpx); */
 }
 
 .active {
@@ -49,7 +53,8 @@
 }
 
 .content {
-    background: #eee
+    /* background: rgba(238, 238, 238, 0.438); */
+    /* border:2rpx solid red; */
 }
 
 .price {
@@ -61,7 +66,8 @@
     text-align: center;
     color: grey;
     line-height: 90rpx;
-    background-color: #eee;
+    background: none;
+    /* background-color: rgba(238, 238, 238, 0.438); */
 }
 
 .goodMsg {
@@ -98,14 +104,17 @@
     border-bottom: 1px solid rgba(211, 211, 211, 0.289);
 }
 
-.goodMsgTitle,.card_title{
-    height: 90rpx;
+.goodMsgTitle,
+.card_title {
+    height:80rpx;
     /* 超出使用省略号 */
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+    font-size: 30rpx;
 }
+
 .intro {
     color: #FA1E8B;
     font-size: 25rpx;
@@ -122,4 +131,37 @@
     font-size: 25rpx;
     color: gray;
 
+}
+
+.topSearch {
+    width: 100vw;
+    height: 100rpx;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.searchBox {
+    width: 600rpx;
+    background: #F7F8FA;
+    display: flex;
+    align-items: center;
+    height: 80rpx;
+    border-radius: 40rpx;   
+
+}
+
+#searchInput {
+    width: 400rpx;
+    text-align: center;
+    width: 500rpx;
+    font-size: 32rpx;
+}
+
+.searchIcon {
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
 }

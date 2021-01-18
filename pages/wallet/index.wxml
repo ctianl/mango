@@ -1,0 +1,8 @@
+<!--pages/wallet/index.wxml-->
+<view class="container">
+	<view class="img">
+		<image src='/images/wallet.png'></image>
+	</view>
+	<view class='money'>{{money}}</view>
+	<view class="text">账户余额(元)</view>
+</view>

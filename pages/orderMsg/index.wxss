@@ -1,18 +1,22 @@
 /* pages/orderMsg/index.wxss */
 page {
     background-color: rgba(238, 238, 238, 0.527);
+    min-height: 100vh;
+    height: fit-content;
 }
 
 .container {
     padding: 0;
+    border: 0.1px solid white;
+    min-height: 100vh;
     height: fit-content;
-    border: 1px solid ;
+    /* border: 1px solid ; */
     position: relative;
     /* background-color: rgba(238, 238, 238, 0.527); */
 }
 
 .status_box {
-    background: #FF8358;
+    background: #FA1E8B;
     height: 135rpx;
     color: white;
     display: flex;
@@ -97,14 +101,50 @@ page {
 .bottom_pay{
     /* position: absolute;
     bottom: 0; */
-    height: 70rpx;
+    height: 80rpx;
     position: absolute;
     bottom: 0;
-    border: 1px solid red;
     width: 100vw;
     display: flex;
+    line-height: 80rpx;
 }
 .bottom_btn{
     width: 50vw;
-    
+    text-align: center;
+}
+.cancelBtn{
+    background-color: white;
+
+}
+.toPayBtn{
+    background: #FA1E8B;
+    color: white;
+}
+.bottom{
+    color: white;
+    text-align: center;
+    width: 100vw;
+    height: 80rpx;
+    line-height: 80rpx;
+    position: absolute;
+    bottom: 0;
+}
+.commentBottom{
+    background: #FA1E8B;
+
+}
+.cancelBotteom{
+    background: white;
+    color: black;
+}
+.popUpStyle{
+    width: 80vw;
+    height: fit-content;
+    border-radius: 10rpx;
+}
+.payMethodBox{
+    display:flex;align-items:center;line-height:100%
+}
+.payMethod{
+    margin-left: 10rpx;
 }

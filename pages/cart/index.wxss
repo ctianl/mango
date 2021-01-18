@@ -1,8 +1,10 @@
 /* pages/cart/index.wxss */
 .container {
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
     background-color: rgba(238, 238, 238, 0.364);
+    padding-bottom: 100rpx;
 }
 .top{
     height: 80rpx;
@@ -12,13 +14,14 @@
     justify-content: flex-end;
     align-items: center;
     padding: 5rpx;
+    padding-right: 10rpx;
 }
 .good_list{
     background-color: white;
 }
 .good_item{
     width: 100vw;
-    min-height: 220rpx;
+    min-height: 240rpx;
     border-bottom: 1rpx solid #eee;
     box-sizing: border-box;
     position: relative;
@@ -38,7 +41,7 @@
     align-items: center;
 }
 .right{
-    height: 200rpx;
+    height: 240rpx;
     position: absolute;
     top: 0rpx;
     left: 260rpx;
@@ -48,17 +51,16 @@
     padding-top: 25rpx;
     width:66%;box-sizing:border-box
 }
-.price{
-    color: #FF495E
 
-}
 .input-class{
     background-color: white;
     border: 1px solid #eee;
 }
 .price{
-    position: absolute;
-    bottom: 10rpx;
+    color: #FF495E;
+    margin-top: 10rpx;
+    /* position: absolute;
+    bottom: 10rpx; */
 }
 .step{
     position: absolute;
@@ -67,14 +69,17 @@
 }
 
 .item_type{
+    color: gray;
     font-size: 25rpx;
-    background: #eee;
     margin-top: 10rpx;
     margin-bottom: 10rpx;
     width: fit-content;
     border-radius: 10rpx;
+    box-sizing: border-box;
     width: 90%;
     padding: 5rpx;
+    padding-left: 20rpx;
+    padding-right: 20rpx;
      /*文本强制不换行*/
      white-space: nowrap;
      /*文本溢出显示省略号*/
@@ -90,12 +95,12 @@
     position: fixed;
     bottom: -1rpx;
     background: white;
-    box-shadow: 0 -5rpx 10rpx #eee;
+    /* box-shadow: 0 -5rpx 10rpx #eee; */
 
 }
 
 .actionBtn{
-    background-color: #FA1E8B;
+    background-color: red;
     color: white;
     height: 100%;
     text-align: center;
@@ -109,4 +114,5 @@
 .sum_price{
     color: #FF495E;
     font-size: 27rpx;
+    transform: translateY(4rpx);
 }

@@ -1,10 +1,17 @@
-<view class="container">
-	<van-search bindtap="search" disabled shape="round" input-align="center" placeholder="搜索商品" />
-
-    <view class="sort">
-        <view bindtap="clickSortItem" wx:for="{{list}}" class="sort_item" data-id="{{item.id}}">
-            <image class="img" src="{{item.img}}"></image>
-            <view>{{item.name}}</view>
-        </view>
-    </view>
+<view class="container" style="1px solid">
+	<van-search custom-class='searchBar' bindtap="search" disabled shape="round" input-align="center" placeholder="搜索商品" />
+	
+	<view id='all'>
+		<view id='sidebar'>
+			<view wx:for='{{list}}' class='sidebar_item {{index==ind?"active":""}}' data-id='{{item.id}}' data-index='{{index}}' bindtap="changeItem">
+				<view>{{item.name}}</view>
+			</view>
+		</view>
+		<view id='content'>
+			<view wx:for='{{showList}}' class='spec_item' data-id='{{item.id}}' bindtap="toSpec">
+				<image src='{{item.img}}' class="img"></image>
+				<view>{{item.name}}</view>
+			</view>
+		</view>
+	</view>
 </view>

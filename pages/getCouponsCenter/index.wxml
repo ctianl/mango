@@ -1,0 +1,30 @@
+<!--pages/getCouponsCenter/index.wxml-->
+<view class="container">
+	<view wx:for="{{list}}" class='item'>
+        <!-- 已过期或者已领取 灰色 -->
+		<view class='leftBox {{item.status==2||item.status==3?"grey":item.type=="discount"?"orange":"red"}}'>
+			<view>
+				<view class="discount">
+					<text  class="condition">{{item.type=='discount'?'':'￥'}}</text>{{item.discount}}</view>
+				<view class="condition">满{{item.condition}}元可用</view>
+			</view>
+		</view>
+		<view class='rightBox {{item.status==2||item.status==3?"grey":item.type=="discount"?"orange":"red"}}'>
+			<view>
+				<view class='name'>{{item.name}}</view>
+				<view class='time'>
+					<text>{{item.time}}</text>
+                    <view wx:if="{{item.status==1}}" data-id="{{item.id}}" bindtap="getCoupon" class='getBtn'>立即领取</view>
+					<text wx:if="{{item.status==2}}">已过期</text>
+					<text wx:if="{{item.status==3}}">已领取</text>
+				</view>
+			</view>
+
+		</view>
+		<view class='topCircle'></view>
+		<view class='bottomCircle'></view>
+		<view class="type {{item.status==2||item.status==3?'grey_type':item.type=='discount'?'red_type':'purple_type'}}">
+			<text>{{item.type=='discount'?'折扣券':'满减券'}}</text>
+		</view>
+	</view>
+</view>

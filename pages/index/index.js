@@ -26,6 +26,29 @@ Page({
 
     all_msg: [],
 
+    newGoodList: [],
+
+    //‘周六上新’ 定位
+    bannerHeight: 0,
+    scrollTop: 0,
+
+    //拼单图片信息
+    groupImg1: '',
+    groupImg2: '',
+    groupImg3: '',
+    groupImg4: '',
+    groupImg5: '',
+    groupName1: '',
+    groupName2: '',
+    groupName3: '',
+    groupName4: '',
+    groupName5: '',
+    groupItemId1: '',
+    groupItemId2: '',
+    groupItemId3: '',
+    groupItemId4: '',
+    groupItemId5: '',
+
 
   },
 
@@ -37,56 +60,64 @@ Page({
   },
 
   //进入粉丝群
-  enterFansGroup: function () {
-    //进入一个二维码界面
-    wx.navigateTo({
-      url: '/pages/code/index',
-    })
-  },
+  // enterFansGroup: function () {
+  //   //进入一个二维码界面
+  //   wx.navigateTo({
+  //     url: '/pages/code/index',
+  //   })
+  // },
 
   //进入分类
   enterSortItemPage: function (e) {
     var that = this
     var id = e.currentTarget.dataset.id
-    if (id > 0 && id < 5) {
-      //前四个
-      wx.navigateTo({
-        url: `/pages/sort-item/index?id=${id}`,
-      })
-    }else if(id==5){
-      //爆款套餐 至商品列表
-      wx.navigateTo({
-        url: `/pages/good-list/index?hot=true`,
-      })
-    }else if(id==6){
-      //房型预订 
-    }else if(id==7){
-      //舌尖美食 至商品列表
-      wx.navigateTo({
-        url: `/pages/good-list/index?id=3`,
-      })
-    }else if(id==8){
-      //拼团互动
-    }
-
+    log(id)
+    wx.navigateTo({
+      url: `/pages/good-list/index?hot=true&type=${id}`,
+    })
   },
   //商品详情
   toGoodMsg: function (e) {
     var id = e.currentTarget.dataset.id
-    //只有住宿套餐，才进入商品详情
-    if (id < 5) {
-      wx.navigateTo({
-        url: `/pages/good-msg/index?id=${id}`,
-      })
-    }
-
+    wx.navigateTo({
+      url: `/pages/good-msg/index?id=${id}`,
+    })
   },
 
-
+  //进入拼单商品详情
+  toGroupGood: function (e) {
+    var good_id = e.currentTarget.dataset.id
+    log(good_id)
+    wx.navigateTo({
+      url: `/pages/groupGoodMsg/index?id=${good_id}`,
+    })
+  },
+  toGroupList: function (e) {
+    wx.navigateTo({
+      url: '/pages/group/index',
+    })
+  },
+  /**
+   * 监听滚动条
+   */
+  onPageScroll: function (e) {
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },
 
   //生命周期函数
   onLoad: function () {
     var that = this
+
+    // 获取.saturday高度
+    wx.createSelectorQuery().select('.saturday').boundingClientRect((rect) => {
+      log(rect)
+      console.log('saturday', rect.top)
+      this.setData({
+        bannerHeight: rect.top
+      })
+    }).exec()
 
     //是否显示福利
     API.ajax('isShowBenefit', {}, function (res) {
@@ -105,11 +136,22 @@ Page({
       console.log(res)
       if (res.status == 200) {
         //设置 
-        wx.setNavigationBarTitle({
-          title: res.data.name
-        })
+        // wx.setNavigationBarTitle({
+        //   title: res.data.name
+        // })
         that.setData({
           ad_img: res.data.imgs
+        })
+      }
+    });
+
+    //获取新品
+    API.ajax('getNewGood', {}, function (res) {
+      //这里既可以获取模拟的res
+      console.log(res)
+      if (res.status == 200) {
+        that.setData({
+          newGoodList: res.data.list
         })
       }
     });
@@ -125,13 +167,43 @@ Page({
       }
     });
 
-    //获取各分类图片信息
-    API.ajax('indexAllMsg', {}, function (res) {
+    //获取拼单图片名称
+    API.ajax('getGroup', {
+      type: 0
+    }, function (res) {
+      //这里既可以获取模拟的res
+      var list = res.data.list
+      if (res.status == 200) {
+        that.setData({
+          groupImg1: list[3].img,
+          groupImg2: list[1].img,
+          groupImg3: list[0].img,
+          groupImg4: list[5].img,
+          groupImg5: list[4].img,
+          groupName1: list[3].single_intro,
+          groupName2: list[1].single_intro,
+          groupName3: list[0].single_intro,
+          groupName4: list[5].single_intro,
+          groupName5: list[4].single_intro,
+          groupItemId1: list[3].good_id,
+          groupItemId2: list[1].good_id,
+          groupItemId3: list[0].good_id,
+          groupItemId4: list[5].good_id,
+          groupItemId5: list[4].good_id,
+        })
+      }
+    });
+
+
+    //获取所有商品信息
+    API.ajax('getGoodList', {
+      type: 0
+    }, function (res) {
       //这里既可以获取模拟的res
       console.log(res)
       if (res.status == 200) {
         that.setData({
-          all_msg: res.data.all_msg
+          all_msg: res.data.list
         })
       }
     });

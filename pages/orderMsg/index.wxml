@@ -2,7 +2,7 @@
 <view class="container">
 	<view class="status_box">
 		<!-- 订单状态 -->
-		<view>{{status==1?'待付款':status==2?'待发货':status==3?'待收货':status==4?'待评价':''}}</view>
+		<view>{{status==1?'待付款':status==2?'待发货':status==3?'待收货':status==4?'待评价':status==5?'已完成':status==6?'退款中':''}}</view>
 	</view>
 
 	<view>
@@ -31,17 +31,17 @@
 		<view wx:for="{{good_list}}">
 			<van-cell>
 				<!-- 标题 插槽 -->
-				<view slot="title" style="display:flex;width:80vw;height:180rpx">
+				<view slot="title" style="display:flex;width:80vw;height:180rpx" data-good_id='{{item.good_id}}' bindtap="toGoodMsg">
 					<view class="img_box">
 						<image src="{{item.img}}"></image>
 					</view>
 					<view style="height:150rpx;flex:2;padding-left:10rpx">
 						<view class="good_name">{{item.name}}</view>
-						<view class="grey">×{{item.number}}</view>
+						<view class="grey">×{{item.number}}  <text>{{item.size}} {{item.type}}</text></view>
 					</view>
 				</view>
 				<!-- 内容 插槽 -->
-				<view>
+				<view  bindtap="toGoodMsg">
 					<text class="pink">￥{{item.price}}</text>
 				</view>
 			</van-cell>
@@ -71,9 +71,46 @@
 
 	</view>
 
-	<!-- 如果没有付款 -->
+	<!-- 待付款——如果没有付款 -->
 	<view wx:if="{{status==1}}" class="bottom_pay">
-		<view class="bottom_btn">取消订单</view>
-		<view class="bottom_btn">去付款</view>
+		<view class="bottom_btn cancelBtn" bindtap="del">取消订单</view>
+		<view class="bottom_btn toPayBtn" bindtap="toPay">去付款</view>
 	</view>
+	<!-- 待发货 可取消订单 -->
+	<view wx:if="{{status==2}}" class="bottom cancelBotteom"  >
+		<text bindtap="cancel">取消订单</text>
+	</view>
+	<!-- 待收货 -->
+	<view wx:if="{{status==3}}" class="bottom commentBottom"  >
+		<text bindtap="confirm">确认收货</text>
+	</view>
+	<!-- 待评价 -->
+	<view wx:if="{{status==4}}" class="bottom commentBottom" bindtap="comment">
+		<text>发表评论</text>
+	</view>
+
+
+	<!-- 选择付款方式 遮盖层 -->
+	<van-popup show="{{showChoosePay }}" custom-class="popUpStyle" bind:close="onCloseChoosePay">
+		<van-cell title="请选择支付方式" size="large" />
+		<van-cell bind:click="wechat_pay">
+			<view slot="title" class="payMethodBox">
+				<van-icon name="wechat" color="green" size="20px" /><text class="payMethod">微信支付</text>
+			</view>
+		</van-cell>
+		<van-cell bind:click="balance_pay">
+			<view slot="title" class="payMethodBox">
+				<van-icon name="gold-coin" color="orange" size="20px" /><text class="payMethod">余额支付</text>
+			</view>
+		</van-cell>
+	</van-popup>
+	<!-- 微信支付 二维码 -->
+	<van-popup show="{{showPayCode }}" custom-class="payCodeBox" bind:close="onClosePayCode">
+		<view></view>
+		<view>
+			<image src="{{codeImg}}"></image>
+		</view>
+		<view>请使用微信扫一扫完成支付</view>
+	</van-popup>
+	<van-dialog id="van-dialog" />
 </view>

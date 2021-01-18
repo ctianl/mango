@@ -1,4 +1,6 @@
 <view class="container">
+	<navigator wx:if='{{showNav}}' list='{{naviList}}'></navigator>
+
 	<view class="headPic">
 		<view class="page_tip">
 			<text style="color:white;font-size:30rpx">{{currentIndex}}</text>/{{sum}}
@@ -46,10 +48,7 @@
 	<van-cell title="商品描述" />
 	<view wx:for="{{intro_imgs}}" class="intro_imgs">
 		<image src="{{item}}" mode="widthFix"></image>
-
 	</view>
-
-
 
 	<view class="space"></view>
 
@@ -58,14 +57,14 @@
 		<van-row>
 			<van-col span="4">
 				<view class="bar_icon first_bar_icon">
-					<button open-type="contact" style="height:90rpx;padding-top:15rpx;color:grey;background:none;border:none;box-shadow:none">
+					<button open-type="contact" >
 						<van-icon name="service-o" size="30px" />
 					</button>
 				</view>
 			</van-col>
 			<van-col span="4">
 				<view class="bar_icon">
-					<button bindtap="cart" style="height:90rpx;padding-top:15rpx;color:grey;background:none;border:0">
+					<button bindtap="cart" >
 						<van-icon name="shopping-cart-o" size="30px" info="{{info==0?'':info}}" />
 					</button>
 
@@ -91,27 +90,67 @@
 		<view class="pop_container">
 			<!-- closeBtn -->
 
-			<image src="/images/close.png" class="close_btn" bindtap="onClose"></image>
-			<!-- 商品图片 -->
-			<view class="number_pic">
-				<image src="{{head_imgs[0]}}"></image>
-			</view>
-			<view class="price_msg">
-				<view class="price_icon">￥ <text  class="price">{{price}}</text></view>
-				<view class="grey sale">库存：{{stock}}</view>
-			</view>
-			<!-- 是否有选择 -->
-			<view wx:if="{{isChooseType}}" class="type">
-				<view class="grey sale">预订套餐</view>
-				<view wx:for="{{types}}">
-					<view data-id="{{item.id}}" data-name="{{item.name}}" bindtap="chooseType" class="{{item.isChoose==true?'type_item_choose':'type_item'}}">{{item.name}}</view>
+			<view style="position:relative;height:210rpx">
+				<image src="/images/close.png" class="close_btn" bindtap="onClose"></image>
+				<!-- 商品图片 -->
+				<view class="number_pic">
+					<image src="{{topImg}}"></image>
+				</view>
+				<view class="price_msg">
+					<view class="price_icon">￥ <text  class="price">{{price}}</text></view>
 				</view>
 			</view>
+
+
+			<!-- 是否有尺寸选择 -->
+			<view wx:if="{{isChooseSize}}" class="type" style="height:100rpx">
+				<view class="sale">尺寸</view>
+				<view wx:for="{{sizes}}" class='small-item {{item.isChoose==true?"small-item-active":""}}' bindtap="chooseSize" data-id="{{item.id}}" data-name='{{item.name}}'>
+					<text>{{item.name}}</text>
+				</view>
+			</view>
+
+			<!-- 分割线 -->
+
+			<!-- 是否有选择 -->
+			<view wx:if="{{isChooseType}}" class="type">
+				<view class="sale">分类</view>
+				<view wx:if="{{types.length>6}}">
+					<!-- 使用小图 -->
+					<view wx:for="{{types}}" class='small-item {{item.isChoose==true?"small-item-active":""}}' bindtap="chooseType" data-name='{{item.name}}' data-img="{{item.img}}" data-type_id="{{item.type_id}}">
+						<image class='small-type-item-img' src="{{item.img}}"></image>
+						<text>{{item.name}}</text>
+					</view>
+				</view>
+				<view wx:else>
+					<!-- 使用大图 -->
+					<view style="margin:auto">
+						<view wx:for="{{types}}" style="display:inline-block" data-img="{{item.img}}" bindtap="chooseType" data-name='{{item.name}}' data-type_id="{{item.type_id}}" class="big-type-item {{item.isChoose==true?'big-type-item-active':''}}">
+							<image data-img="{{item.img}}" data-name="{{item.name}}" bindtap='openPic' src='/images/scale.png' class="scaleIcon"></image>
+							<image class='big-type-item-img' src="{{item.img}}"></image>
+							<view data-name="{{item.name}}" class="big-type-item-name {{item.isChoose==true?'type_item_choose':'type_item'}}">{{item.name}}</view>
+						</view>
+					</view>
+				</view>
+			</view>
+
+
 			<!-- 购买数量 -->
-			<view class="buy_number">
+			<!-- 用一个cell -->
+			<van-cell border='{{false}}'>
+				<view slot="title">
+					<view class="van-cell-text">购买数量<text class="grey sale">库存{{stock}}件</text></view>
+				</view>
+				<view>
+					<van-stepper value="{{step}}" bind:change="stepChange" />
+
+				</view>
+			</van-cell>
+
+			<!-- <view class="buy_number">
 				<view class="grey sale">购买数量</view>
 				<van-stepper value="{{step}}" bind:change="stepChange" />
-			</view>
+			</view> -->
 
 			<view class="number_btns">
 				<view class="enter_cart pop_icon" bindtap="enter_cart">加入购物车</view>
@@ -142,4 +181,19 @@
 		</view>
 	</van-popup>
 
+	<!-- 打开商品图片 -->
+	<view class='showImg' wx:if="{{showImg}}" bindtap="closeImg">
+		<image class='show-item-img' src='{{showItemImg}}' mode='aspectFill'></image>
+		<view class='show-item-name'>{{showItemName}}</view>
+		<!-- <view class='show-item-name'>抱抱小熊</view> -->
+	</view>
+	
+	<view wx:if='{{isShowTop}}' class='topIcon' bindtap="toTop">
+		<image src="/images/top.png"></image>
+	</view>
+
+		<!-- 一个弹窗,提醒用户进行登录 -->
+	<van-dialog use-slot title="操作提示" confirmButtonText='登录' show="{{ showLogin }}" show-cancel-button confirm-button-open-type="getUserInfo" bind:cancel="onCloseLogin" bind:getuserinfo="bindGetUserInfo">
+		<view class='loginContent'>尚未登录,是否登录使用小程序?</view>
+	</van-dialog>
 </view>

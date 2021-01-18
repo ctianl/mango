@@ -35,7 +35,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.14.1",
 	"appid": "wx0465efb3c3e922ff",
-	"projectname": "mango",
+	"projectname": "mango-master",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
